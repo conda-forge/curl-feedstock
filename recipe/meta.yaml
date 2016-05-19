@@ -39,6 +39,9 @@ test:
     - curl-config --features       # [not win]
     - curl-config --protocols      # [not win]
 
+    # Try downloading something from https to make sure the certs are used correctly.
+    - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE
+
 about:
   home: http://curl.haxx.se/
   license: MIT/X derivate (http://curl.haxx.se/docs/copyright.html)
