@@ -10,7 +10,8 @@ source:
   sha256: 864e7819210b586d42c674a1fdd577ce75a78b3dda64c63565abe5aefd72c753
 
 build:
-  number:  1
+  number: 2
+  detect_binary_files_with_prefix: true
   features:
     - vc9     # [win and py27]
     - vc10    # [win and py34]
@@ -38,6 +39,9 @@ test:
     - curl --help
     - curl-config --features       # [not win]
     - curl-config --protocols      # [not win]
+
+    # Try downloading something from https to make sure the certs are used correctly.
+    - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE
 
 about:
   home: http://curl.haxx.se/
