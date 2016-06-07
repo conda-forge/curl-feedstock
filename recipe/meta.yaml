@@ -21,6 +21,8 @@ requirements:
   build:
     # python is a build requirement on Windows to resolve features.
     - python      # [win]
+    # perl is required to run the tests on UNIX.
+    - perl        # [unix]
     - pkg-config  # [unix]
     - openssl     # [unix]
     - zlib
