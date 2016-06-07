@@ -1,4 +1,4 @@
-{% set version = "7.48.0" %}
+{% set version = "7.49.1" %}
 
 package:
   name: curl
@@ -7,10 +7,10 @@ package:
 source:
   fn: curl-{{ version }}.tar.bz2
   url: http://curl.haxx.se/download/curl-{{ version }}.tar.bz2
-  sha256: 864e7819210b586d42c674a1fdd577ce75a78b3dda64c63565abe5aefd72c753
+  sha256: eb63cec4bef692eab9db459033f409533e6d10e20942f4b060b32819e81885f1
 
 build:
-  number: 2
+  number: 0
   detect_binary_files_with_prefix: true
   features:
     - vc9     # [win and py27]
