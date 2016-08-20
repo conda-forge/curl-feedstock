@@ -10,7 +10,7 @@ source:
   sha256: eb63cec4bef692eab9db459033f409533e6d10e20942f4b060b32819e81885f1
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   features:
     - vc9     # [win and py27]
@@ -24,11 +24,11 @@ requirements:
     # perl is required to run the tests on UNIX.
     - perl        # [unix]
     - pkg-config  # [unix]
-    - openssl     # [unix]
-    - zlib
+    - openssl 1.0.*     # [unix]
+    - zlib 1.2.*
   run:
-    - openssl     # [unix]
-    - zlib
+    - openssl 1.0.*     # [unix]
+    - zlib 1.2.*
 
 test:
   requires:
