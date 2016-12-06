@@ -11,6 +11,18 @@ Summary: tool and library for transferring data with URL syntax
 
 
 
+Current build status
+====================
+
+Linux: [![Circle CI](https://circleci.com/gh/conda-forge/curl-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/curl-feedstock)
+OSX: [![TravisCI](https://travis-ci.org/conda-forge/curl-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/curl-feedstock)
+Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/curl-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/curl-feedstock/branch/master)
+
+Current release info
+====================
+Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/curl/badges/version.svg)](https://anaconda.org/conda-forge/curl)
+Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/curl/badges/downloads.svg)](https://anaconda.org/conda-forge/curl)
+
 Installing curl
 ===============
 
@@ -31,7 +43,6 @@ It is possible to list all of the versions of `curl` available on your platform 
 ```
 conda search curl --channel conda-forge
 ```
-
 
 
 About conda-forge
@@ -67,18 +78,6 @@ Terminology
 
 **conda-forge** - the place where the feedstock and smithy live and work to
                   produce the finished article (built conda distributions)
-
-Current build status
-====================
-
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/curl-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/curl-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/curl-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/curl-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/curl-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/curl-feedstock/branch/master)
-
-Current release info
-====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/curl/badges/version.svg)](https://anaconda.org/conda-forge/curl)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/curl/badges/downloads.svg)](https://anaconda.org/conda-forge/curl)
 
 
 Updating curl-feedstock
