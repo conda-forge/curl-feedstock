@@ -10,7 +10,7 @@ source:
   sha256: eb63cec4bef692eab9db459033f409533e6d10e20942f4b060b32819e81885f1
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: true
   features:
     - vc9     # [win and py27]
