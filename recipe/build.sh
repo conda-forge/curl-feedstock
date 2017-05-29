@@ -12,6 +12,7 @@ fi
 
 ./configure \
     --disable-ldap \
+    --enable-threaded-resolver \
     --prefix=${PREFIX} \
     --with-ca-bundle=${PREFIX}/ssl/cacert.pem \
     --with-ssl=${PREFIX} \
