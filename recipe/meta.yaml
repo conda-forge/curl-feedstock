@@ -16,6 +16,8 @@ build:
     - vc9     # [win and py27]
     - vc10    # [win and py34]
     - vc14    # [win and py35]
+    - vc14    # [win and py36]
+  skip: true  # [win and py35]
 
 requirements:
   build:
@@ -24,7 +26,7 @@ requirements:
     # python is a build requirement on Windows to resolve features.
     - python           # [win]
     # perl is required to run the tests on UNIX.
-    - perl             # [unix]
+    - perl 5.22.2.1    # [unix]
     - pkg-config       # [unix]
     - openssl 1.0.*    # [unix]
     - zlib 1.2.*
@@ -39,6 +41,7 @@ test:
     - python 2.7.*     # [win and py27]
     - python 3.4.*     # [win and py34]
     - python 3.5.*     # [win and py35]
+    - python 3.6.*     # [win and py36]
 
   commands:
     # curl help commands on Windows have non-zero status codes.  Need other test.
