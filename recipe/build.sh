@@ -16,6 +16,8 @@ fi
     --with-ca-bundle=${PREFIX}/ssl/cacert.pem \
     --with-ssl=${PREFIX} \
     --with-zlib=${PREFIX} \
+    --with-gssapi=${PREFIX} \
+    --with-libssh2=${PREFIX} \
 || cat config.log
 
 make
