@@ -1,4 +1,4 @@
-{% set version = "7.52.1" %}
+{% set version = "7.54.1" %}
 
 package:
   name: curl
@@ -7,7 +7,7 @@ package:
 source:
   fn: curl-{{ version }}.tar.bz2
   url: http://curl.haxx.se/download/curl-{{ version }}.tar.bz2
-  sha256: d16185a767cb2c1ba3d5b9096ec54e5ec198b213f45864a38b3bda4bbf87389b
+  sha256: fdfc4df2d001ee0c44ec071186e770046249263c491fcae48df0e1a3ca8f25a0
 
 build:
   number: 0
@@ -16,17 +16,23 @@ build:
     - vc9     # [win and py27]
     - vc10    # [win and py34]
     - vc14    # [win and py35]
+    - vc14    # [win and py36]
+  skip: true  # [win and py35]
 
 requirements:
   build:
+    - krb5 1.14.*
+    - libssh2 1.8.*
     # python is a build requirement on Windows to resolve features.
     - python           # [win]
     # perl is required to run the tests on UNIX.
-    - perl             # [unix]
+    - perl 5.22.2.1    # [unix]
     - pkg-config       # [unix]
     - openssl 1.0.*    # [unix]
     - zlib 1.2.*
   run:
+    - krb5 1.14.*
+    - libssh2 1.8.*
     - openssl 1.0.*    # [unix]
     - zlib 1.2.*
 
@@ -35,6 +41,7 @@ test:
     - python 2.7.*     # [win and py27]
     - python 3.4.*     # [win and py34]
     - python 3.5.*     # [win and py35]
+    - python 3.6.*     # [win and py36]
 
   commands:
     # curl help commands on Windows have non-zero status codes.  Need other test.
