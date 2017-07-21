@@ -1,52 +1,50 @@
-{% set version = "7.54.1" %}
+{% set version = "7.55.1" %}
 
 package:
   name: curl
   version: {{ version }}
 
 source:
-  fn: curl-{{ version }}.tar.bz2
   url: http://curl.haxx.se/download/curl-{{ version }}.tar.bz2
-  sha256: fdfc4df2d001ee0c44ec071186e770046249263c491fcae48df0e1a3ca8f25a0
+  sha256: e5b1a92ed3b0c11f149886458fa063419500819f1610c020d62f25b8e4b16cfb
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win and py36]
   detect_binary_files_with_prefix: True
   features:
     - vc9  # [win and py27]
-    - vc10  # [win and py34]
     - vc14  # [win and (py35 or py36)]
 
 requirements:
   build:
     # python is a build requirement on Windows to resolve features.
     - python  # [win]
-    # perl is required to run the tests on UNIX.
+    # perl is required to run the tests on nix*.
     - perl 5.22.2.1  # [unix]
     - krb5 1.14.*
     - libssh2 1.8.*
     - pkg-config  # [unix]
     - openssl 1.0.*  # [unix]
-    - zlib 1.2.8
+    - zlib 1.2.11
     - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
     - vc 14  # [win and (py35 or py36)]
   run:
     - krb5 1.14.*
     - libssh2 1.8.*
     - openssl 1.0.*    # [unix]
-    - zlib 1.2.8
+    - zlib 1.2.11
     - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
     - vc 14  # [win and (py35 or py36)]
 
 test:
   commands:
-    - curl --help
-    - curl-config --features
-    - curl-config --protocols
+    - curl --version
+    - curl-config --features  # [not win]
+    - curl-config --protocols  # [not win]
     - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
 
 about:
   home: http://curl.haxx.se/

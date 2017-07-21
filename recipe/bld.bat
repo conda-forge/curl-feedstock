@@ -6,7 +6,7 @@ if %ARCH% == 32 (
     set ARCH_STRING=x64
 )
 
-:: This is implicitly using WinSSL.  See Makefile.vc for more info.
+REM This is implicitly using WinSSL.  See Makefile.vc for more info.
 nmake /f Makefile.vc mode=dll VC=%VS_MAJOR:"=% WITH_DEVEL=%LIBRARY_PREFIX% ^
          WITH_ZLIB=dll WITH_SSH2=dll DEBUG=no ENABLE_IDN=no ENABLE_SSPI=yes ^
          MACHINE=%ARCH_STRING%
