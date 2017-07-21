@@ -3,8 +3,7 @@
 export PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
 export C_INCLUDE_PATH="${PREFIX}/include"
 
-if [[ `uname` == "Darwin" ]]
-then
+if [ $(uname) == "Darwin" ]; then
     export DYLD_FALLBACK_LIBRARY_PATH="${PREFIX}/lib"
     export CC=clang
     export CXX=clang++
@@ -20,9 +19,6 @@ fi
     --with-libssh2=${PREFIX} \
 || cat config.log
 
-make
-make test
-make install
-
-# Includes man pages and other miscellaneous.
-rm -rf "${PREFIX}/share"
+make -j$CPU_COUNT
+make test -j$CPU_COUNT
+make install -j$CPU_COUNT

@@ -10,46 +10,42 @@ source:
   sha256: fdfc4df2d001ee0c44ec071186e770046249263c491fcae48df0e1a3ca8f25a0
 
 build:
-  number: 0
-  detect_binary_files_with_prefix: true
+  number: 1
+  skip: True  # [win and py36]
+  detect_binary_files_with_prefix: True
   features:
-    - vc9     # [win and py27]
-    - vc10    # [win and py34]
-    - vc14    # [win and py35]
-    - vc14    # [win and py36]
-  skip: true  # [win and py35]
+    - vc9  # [win and py27]
+    - vc10  # [win and py34]
+    - vc14  # [win and (py35 or py36)]
 
 requirements:
   build:
+    # python is a build requirement on Windows to resolve features.
+    - python  # [win]
+    # perl is required to run the tests on UNIX.
+    - perl 5.22.2.1  # [unix]
     - krb5 1.14.*
     - libssh2 1.8.*
-    # python is a build requirement on Windows to resolve features.
-    - python           # [win]
-    # perl is required to run the tests on UNIX.
-    - perl 5.22.2.1    # [unix]
-    - pkg-config       # [unix]
-    - openssl 1.0.*    # [unix]
-    - zlib 1.2.*
+    - pkg-config  # [unix]
+    - openssl 1.0.*  # [unix]
+    - zlib 1.2.8
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and (py35 or py36)]
   run:
     - krb5 1.14.*
     - libssh2 1.8.*
     - openssl 1.0.*    # [unix]
-    - zlib 1.2.*
+    - zlib 1.2.8
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and (py35 or py36)]
 
 test:
-  requires:
-    - python 2.7.*     # [win and py27]
-    - python 3.4.*     # [win and py34]
-    - python 3.5.*     # [win and py35]
-    - python 3.6.*     # [win and py36]
-
   commands:
-    # curl help commands on Windows have non-zero status codes.  Need other test.
     - curl --help
-    - curl-config --features       # [not win]
-    - curl-config --protocols      # [not win]
-
-    # Try downloading something from https to make sure the certs are used correctly.
+    - curl-config --features
+    - curl-config --protocols
     - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE
 
 about:
