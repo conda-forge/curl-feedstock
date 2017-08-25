@@ -27,10 +27,9 @@ requirements:
     - {{ compiler('c') }}
   host:
     - openssl 1.0.*    # [unix]
-    - zlib 1.2.*
+    - zlib
   run:
     - openssl 1.0.*    # [unix]
-    - zlib 1.2.*
 
 test:
   requires:
