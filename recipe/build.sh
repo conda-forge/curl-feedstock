@@ -19,7 +19,7 @@ fi
     --with-zlib=${PREFIX} \
 || cat config.log
 
-make
+make -j${CPU_COUNT} ${VERBOSE_AT}
 # TODO :: test 1119... exit FAILED
 # make test
 make install
