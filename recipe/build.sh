@@ -6,8 +6,6 @@ export C_INCLUDE_PATH="${PREFIX}/include"
 if [[ `uname` == "Darwin" ]]
 then
     export DYLD_FALLBACK_LIBRARY_PATH="${PREFIX}/lib"
-    export CC=clang
-    export CXX=clang++
 fi
 
 ./configure \
