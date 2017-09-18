@@ -10,10 +10,9 @@ source:
   sha256: e5b1a92ed3b0c11f149886458fa063419500819f1610c020d62f25b8e4b16cfb
 
 build:
-  skip: True   # [win and vc!=14]
   number: 3
-  ignore_run_exports:
-    - vc
+  features:
+    - vc{{ vc }}  # [win]
 
 requirements:
   build:
@@ -28,7 +27,6 @@ requirements:
   run:
     - openssl 1.0.*    # [unix]
     - libssh2 1.*
-    - vs2015_runtime   # [win]
 
 test:
   commands:
