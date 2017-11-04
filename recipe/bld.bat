@@ -13,6 +13,6 @@ nmake /f Makefile.vc mode=dll VC=%VS_MAJOR:"=% WITH_DEVEL=%LIBRARY_PREFIX% ^
 if errorlevel 1 exit 1
 
 robocopy ..\builds\libcurl-vc%VS_MAJOR:"=%-%ARCH_STRING%-release-dll-zlib-dll-ssh2-dll-ipv6-sspi-winssl\ %LIBRARY_PREFIX% *.* /E
-if errorlevel 1 exit 1
+if %ERRORLEVEL% GTR 3 exit 1
 
 exit 0
