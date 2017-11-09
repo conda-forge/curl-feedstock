@@ -10,9 +10,7 @@ source:
   sha256: e5b1a92ed3b0c11f149886458fa063419500819f1610c020d62f25b8e4b16cfb
 
 build:
-  number: 3
-  features:
-    - vc{{ vc }}  # [win]
+  number: 4
 
 requirements:
   build:
