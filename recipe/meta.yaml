@@ -1,16 +1,16 @@
-{% set version = "7.55.1" %}
+{% set version = "7.57.0" %}
 
 package:
-  name: curl
+  name: curl_split_recipe
   version: {{ version }}
 
 source:
   fn: curl-{{ version }}.tar.bz2
   url: http://curl.haxx.se/download/curl-{{ version }}.tar.bz2
-  sha256: e5b1a92ed3b0c11f149886458fa063419500819f1610c020d62f25b8e4b16cfb
+  sha256: c92fe31a348eae079121b73884065e600c533493eb50f1f6cee9c48a3f454826
 
 build:
-  number: 4
+  number: 0
 
 requirements:
   build:
@@ -19,22 +19,55 @@ requirements:
     - perl             # [unix]
     - pkg-config       # [unix]
   host:
-    - openssl 1.0.*    # [unix]
+    - openssl   # [unix]
     - zlib
-    - libssh2 1.*
-  run:
-    - openssl 1.0.*    # [unix]
-    - libssh2 1.*
+    - libssh2
 
-test:
-  commands:
-    # curl help commands on Windows have non-zero status codes.  Need other test.
-    - curl --help
-    - curl-config --features       # [not win]
-    - curl-config --protocols      # [not win]
+outputs:
+  - name: libcurl
+    requirements:
+      build:
+        - {{ compiler('c') }}
+      host:
+        - openssl   # [unix]
+        - zlib
+        - libssh2
+    build:
+      run_exports:
+        - {{ pin_subpackage('libcurl') }}
+    files:
+      - include/curl             # [unix]
+      - lib/libcurl*             # [unix]
+      - lib/pkgconfig/libcurl*   # [unix]
+      - bin/curl-config          # [unix]
+      - Library/bin/libcurl.dll  # [win]
+      - Library/include/curl     # [win]
+      - Library/lib/libcurl*     # [win]
+    test:
+      commands:
+        - curl-config --features       # [not win]
+        - curl-config --protocols      # [not win]
+  - name: curl
+    files:
+      - bin/curl               # [unix]
+      - Library/bin/curl.exe   # [win]
+      - Library/bin/curl.exe.manifest  # [win]
+    requirements:
+      build:
+        - {{ compiler('c') }}
+      host:
+        - {{ pin_subpackage('libcurl', exact=True) }}
+        - zlib
+      run:
+        - {{ pin_subpackage('libcurl', exact=True) }}
 
-    # Try downloading something from https to make sure the certs are used correctly.
-    - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE
+    test:
+      commands:
+        # curl help commands on Windows have non-zero status codes.  Need other test.
+        - curl --help
+
+        # Try downloading something from https to make sure the certs are used correctly.
+        - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE
 
 about:
   home: http://curl.haxx.se/
