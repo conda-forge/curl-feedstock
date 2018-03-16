@@ -45,6 +45,8 @@ test:
     - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+    - nm $PREFIX/lib/libcurl.so | grep libssh2_scp_recv2  # [not win]
+    - ldd $PREFIX/lib/libcurl.so  # [not win]
 
 about:
   home: http://curl.haxx.se/
