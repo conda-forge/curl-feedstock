@@ -10,8 +10,8 @@ if [ $(uname) == "Darwin" ]; then
 fi
 
 ./configure \
-    --disable-ldap \
     --prefix=${PREFIX} \
+    --disable-ldap \
     --with-ca-bundle=${PREFIX}/ssl/cacert.pem \
     --with-ssl=${PREFIX} \
     --with-zlib=${PREFIX} \
