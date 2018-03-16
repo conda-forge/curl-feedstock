@@ -1,4 +1,4 @@
-{% set version = "7.55.1" %}
+{% set version = "7.59.0" %}
 
 package:
   name: curl
@@ -6,7 +6,7 @@ package:
 
 source:
   url: http://curl.haxx.se/download/curl-{{ version }}.tar.bz2
-  sha256: e5b1a92ed3b0c11f149886458fa063419500819f1610c020d62f25b8e4b16cfb
+  sha256: b5920ffd6a8c95585fb95070e0ced38322790cb335c39d0dab852d12e157b5a0
 
 build:
   number: 0
