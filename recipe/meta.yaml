@@ -7,6 +7,13 @@ package:
 source:
   url: http://curl.haxx.se/download/curl-{{ version }}.tar.bz2
   sha256: 1cb081f97807c01e3ed747b6e1c9fee7a01cb10048f1cd0b5f56cfe0209de731
+  patches:
+    ###################################################
+    # Raised issue upstream on this issue.            #
+    #                                                 #
+    # xref: https://github.com/curl/curl/issues/2394  #
+    ###################################################
+    - drop_failing_tests_macos.diff  # [osx]
 
 build:
   number: 0
