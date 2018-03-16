@@ -18,6 +18,7 @@ build:
 
 requirements:
   build:
+    - toolchain
     # python is a build requirement on Windows to resolve features.
     - python  # [win]
     # perl is required to run the tests on nix*.
