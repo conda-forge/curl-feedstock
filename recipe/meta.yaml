@@ -1,49 +1,60 @@
-{% set version = "7.52.1" %}
+{% set version = "7.58.0" %}
 
 package:
   name: curl
   version: {{ version }}
 
 source:
-  fn: curl-{{ version }}.tar.bz2
   url: http://curl.haxx.se/download/curl-{{ version }}.tar.bz2
-  sha256: d16185a767cb2c1ba3d5b9096ec54e5ec198b213f45864a38b3bda4bbf87389b
+  sha256: 1cb081f97807c01e3ed747b6e1c9fee7a01cb10048f1cd0b5f56cfe0209de731
+  patches:
+    ###################################################
+    # Raised issue upstream on this issue.            #
+    #                                                 #
+    # xref: https://github.com/curl/curl/issues/2394  #
+    ###################################################
+    - drop_failing_tests_macos.diff  # [osx]
 
 build:
-  number: 1
-  detect_binary_files_with_prefix: true
+  number: 2
+  skip: True  # [win and py36]
+  detect_binary_files_with_prefix: True
   features:
-    - vc9     # [win and py27]
-    - vc10    # [win and py34]
-    - vc14    # [win and py35]
+    - vc9  # [win and py27]
+    - vc14  # [win and (py35 or py36)]
 
 requirements:
   build:
+    - toolchain
     # python is a build requirement on Windows to resolve features.
-    - python           # [win]
-    # perl is required to run the tests on UNIX.
-    - perl             # [unix]
-    - pkg-config       # [unix]
-    - openssl 1.0.*    # [unix]
-    - zlib 1.2.*
+    - python  # [win]
+    # perl is required to run the tests on nix*.
+    - perl 5.22.2.1  # [unix]
+    - krb5 1.14.*
+    - libssh2 1.8.*
+    - pkg-config  # [unix]
+    - openssl 1.0.*  # [unix]
+    - zlib 1.2.11
+    - vc 9  # [win and py27]
+    - vc 14  # [win and (py35 or py36)]
   run:
+    - krb5 1.14.*
+    - libssh2 1.8.*
     - openssl 1.0.*    # [unix]
-    - zlib 1.2.*
+    - zlib 1.2.11
+    - vc 9  # [win and py27]
+    - vc 14  # [win and (py35 or py36)]
 
 test:
-  requires:
-    - python 2.7.*     # [win and py27]
-    - python 3.4.*     # [win and py34]
-    - python 3.5.*     # [win and py35]
-
   commands:
-    # curl help commands on Windows have non-zero status codes.  Need other test.
-    - curl --help
-    - curl-config --features       # [not win]
-    - curl-config --protocols      # [not win]
-
-    # Try downloading something from https to make sure the certs are used correctly.
+    - curl --version
+    - curl-config --features  # [not win]
+    - curl-config --protocols  # [not win]
     - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+    - nm $PREFIX/lib/libcurl$SHLIB_EXT | grep libssh2_scp_recv2  # [linux]
+    - ldd $PREFIX/lib/libcurl.so  # [linux]
 
 about:
   home: http://curl.haxx.se/

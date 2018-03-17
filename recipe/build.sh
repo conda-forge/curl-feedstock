@@ -3,25 +3,23 @@
 export PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
 export C_INCLUDE_PATH="${PREFIX}/include"
 
-if [[ `uname` == "Darwin" ]]
-then
+if [ $(uname) == "Darwin" ]; then
     export DYLD_FALLBACK_LIBRARY_PATH="${PREFIX}/lib"
     export CC=clang
     export CXX=clang++
 fi
 
 ./configure \
+    --prefix=${PREFIX} \
     --disable-ldap \
     --enable-threaded-resolver \
-    --prefix=${PREFIX} \
     --with-ca-bundle=${PREFIX}/ssl/cacert.pem \
     --with-ssl=${PREFIX} \
     --with-zlib=${PREFIX} \
+    --with-gssapi=${PREFIX} \
+    --with-libssh2=${PREFIX} \
 || cat config.log
 
-make
-make test
-make install
-
-# Includes man pages and other miscellaneous.
-rm -rf "${PREFIX}/share"
+make -j$CPU_COUNT
+make test -j$CPU_COUNT
+make install -j$CPU_COUNT
