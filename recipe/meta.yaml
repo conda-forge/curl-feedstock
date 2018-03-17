@@ -1,4 +1,4 @@
-{% set version = "7.58.0" %}
+{% set version = "7.59.0" %}
 
 package:
   name: curl
@@ -6,7 +6,7 @@ package:
 
 source:
   url: http://curl.haxx.se/download/curl-{{ version }}.tar.bz2
-  sha256: 1cb081f97807c01e3ed747b6e1c9fee7a01cb10048f1cd0b5f56cfe0209de731
+  sha256: b5920ffd6a8c95585fb95070e0ced38322790cb335c39d0dab852d12e157b5a0
   patches:
     ###################################################
     # Raised issue upstream on this issue.            #
@@ -16,7 +16,7 @@ source:
     - drop_failing_tests_macos.diff  # [osx]
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win and py36]
   detect_binary_files_with_prefix: True
   features:
