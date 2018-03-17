@@ -7,9 +7,16 @@ package:
 source:
   url: http://curl.haxx.se/download/curl-{{ version }}.tar.bz2
   sha256: 1cb081f97807c01e3ed747b6e1c9fee7a01cb10048f1cd0b5f56cfe0209de731
+  patches:
+    ###################################################
+    # Raised issue upstream on this issue.            #
+    #                                                 #
+    # xref: https://github.com/curl/curl/issues/2394  #
+    ###################################################
+    - drop_failing_tests_macos.diff  # [osx]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win and py36]
   detect_binary_files_with_prefix: True
   features:
@@ -18,6 +25,7 @@ build:
 
 requirements:
   build:
+    - toolchain
     # python is a build requirement on Windows to resolve features.
     - python  # [win]
     # perl is required to run the tests on nix*.
@@ -45,8 +53,8 @@ test:
     - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
-    - nm $PREFIX/lib/libcurl.so | grep libssh2_scp_recv2  # [not win]
-    - ldd $PREFIX/lib/libcurl.so  # [not win]
+    - nm $PREFIX/lib/libcurl$SHLIB_EXT | grep libssh2_scp_recv2  # [linux]
+    - ldd $PREFIX/lib/libcurl.so  # [linux]
 
 about:
   home: http://curl.haxx.se/
