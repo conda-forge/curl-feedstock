@@ -17,33 +17,26 @@ source:
 
 build:
   number: 0
-  skip: True  # [win and py36]
   detect_binary_files_with_prefix: True
-  features:
-    - vc9  # [win and py27]
-    - vc14  # [win and (py35 or py36)]
 
 requirements:
   build:
-    - toolchain
-    # python is a build requirement on Windows to resolve features.
-    - python  # [win]
-    # perl is required to run the tests on nix*.
     - perl 5.22.2.1  # [unix]
-    - krb5 1.14.*
-    - libssh2 1.8.*
     - pkg-config  # [unix]
-    - openssl 1.0.*  # [unix]
-    - zlib 1.2.11
-    - vc 9  # [win and py27]
-    - vc 14  # [win and (py35 or py36)]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    # python is a build requirement on Windows to resolve features.
+    # perl is required to run the tests on nix*.
+    - krb5
+    - libssh2
+    - openssl        # [unix]
+    - zlib
   run:
-    - krb5 1.14.*
-    - libssh2 1.8.*
-    - openssl 1.0.*    # [unix]
-    - zlib 1.2.11
-    - vc 9  # [win and py27]
-    - vc 14  # [win and (py35 or py36)]
+    - krb5
+    - libssh2
+    - openssl          # [unix]
+    - zlib
 
 test:
   commands:
