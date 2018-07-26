@@ -8,12 +8,16 @@ libssh2:
 - '1.8'
 openssl:
 - 1.0.2
+perl:
+- '5.26'
 pin_run_as_build:
   krb5:
     max_pin: x.x
   libssh2:
     max_pin: x.x
   openssl:
+    max_pin: x.x.x
+  perl:
     max_pin: x.x.x
   zlib:
     max_pin: x.x
