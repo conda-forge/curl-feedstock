@@ -16,12 +16,12 @@ source:
     - drop_failing_tests_macos.diff  # [osx]
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: True
 
 requirements:
   build:
-    - perl 5.22.2.1  # [unix]
+    - perl  # [unix]
     - pkg-config  # [unix]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
