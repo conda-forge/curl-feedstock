@@ -26,6 +26,7 @@ requirements:
     - libssh2
     - openssl        # [unix]
     - zlib
+    - python =2
   run:
     - krb5
     - libssh2
@@ -38,8 +39,6 @@ test:
     - curl-config --features  # [not win]
     - curl-config --protocols  # [not win]
     - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
     - nm $PREFIX/lib/libcurl$SHLIB_EXT | grep libssh2_scp_recv2  # [linux]
     - ldd $PREFIX/lib/libcurl.so  # [linux]
 
