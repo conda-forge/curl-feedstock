@@ -24,3 +24,5 @@ fi
 make -j$CPU_COUNT
 make test -j$CPU_COUNT
 make install -j$CPU_COUNT
+
+find $PREFIX -name '*.la' -delete
