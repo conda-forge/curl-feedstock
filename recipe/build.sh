@@ -7,8 +7,6 @@ if [ $(uname) == "Darwin" ]; then
     export DYLD_FALLBACK_LIBRARY_PATH="${PREFIX}/lib"
     export CC=clang
     export CXX=clang++
-else
-    export LDFLAGS="$LDFLAGS -Wl,--disable-new-dtags"
 fi
 
 ./configure \
