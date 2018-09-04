@@ -25,5 +25,5 @@ make -j$CPU_COUNT
 make test -j$CPU_COUNT
 make install -j$CPU_COUNT
 
-# We can remove this when we start using the new conda-build.
+# xref.: https://github.com/conda-forge/conda-forge.github.io/issues/621
 find $PREFIX -name '*.la' -delete
