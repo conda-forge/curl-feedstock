@@ -7,7 +7,7 @@ channel_targets:
 cxx_compiler:
 - vs2008
 krb5:
-- '1.14'
+- '1.16'
 libssh2:
 - '1.8'
 pin_run_as_build:
