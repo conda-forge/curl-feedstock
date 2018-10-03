@@ -3,8 +3,17 @@
 export PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
 export C_INCLUDE_PATH="${PREFIX}/include"
 
-else
-    export LDFLAGS="$LDFLAGS -Wl,--disable-new-dtags"
+# Legacy toolchain flags
+if [[ ${c_compiler} =~ .*toolchain.* ]]; then
+    if [ $(uname) == "Darwin" ]; then
+        export DYLD_FALLBACK_LIBRARY_PATH="${PREFIX}/lib"
+        export CC=clang
+        export CXX=clang++
+    else
+        export LDFLAGS="$LDFLAGS -Wl,--disable-new-dtags"
+    fi
+fi
+
 ./configure \
     --prefix=${PREFIX} \
     --host=${HOST} \
