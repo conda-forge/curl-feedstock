@@ -4,8 +4,6 @@ channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
-cxx_compiler:
-- vs2015
 krb5:
 - '1.16'
 libssh2:
@@ -17,8 +15,5 @@ pin_run_as_build:
     max_pin: x.x
   zlib:
     max_pin: x.x
-zip_keys:
-- - c_compiler
-  - cxx_compiler
 zlib:
 - '1.2'
