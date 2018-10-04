@@ -13,6 +13,7 @@ if [[ ${c_compiler} =~ .*toolchain.* ]]; then
         export LDFLAGS="$LDFLAGS -Wl,--disable-new-dtags"
     fi
 fi
+export LDFLAGS="${LDFLAGS} -Wl,-rpath-link,$PREFIX/lib"
 
 ./configure \
     --prefix=${PREFIX} \
