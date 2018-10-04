@@ -26,7 +26,6 @@ requirements:
     - perl  # [unix]
     - pkg-config  # [unix]
   host:
-    - openssl   # [unix]
     - zlib
     - krb5
     - libssh2
@@ -43,6 +42,7 @@ outputs:
         - openssl   # [unix]
         - zlib
         - libssh2
+        - krb5
     build:
       run_exports:
         - {{ pin_subpackage('libcurl') }}
