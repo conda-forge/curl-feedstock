@@ -70,6 +70,8 @@ outputs:
       host:
         - {{ pin_subpackage('libcurl', exact=True) }}
         - zlib
+        - libssh2
+        - krb5
       run:
         - {{ pin_subpackage('libcurl', exact=True) }}
     test:
