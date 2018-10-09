@@ -13,7 +13,9 @@ if [[ ${c_compiler} =~ .*toolchain.* ]]; then
         export LDFLAGS="$LDFLAGS -Wl,--disable-new-dtags"
     fi
 fi
-export LDFLAGS="${LDFLAGS} -Wl,-rpath-link,$PREFIX/lib"
+if [[ ${target_platform} != osx-64 ]]; then
+    export LDFLAGS="${LDFLAGS} -Wl,-rpath-link,$PREFIX/lib"
+fi
 
 ./configure \
     --prefix=${PREFIX} \
