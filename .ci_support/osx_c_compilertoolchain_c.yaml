@@ -1,15 +1,15 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '10.9'
+build_number_decrement:
+- '1000'
 c_compiler:
 - toolchain_c
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
-cxx_compiler:
-- toolchain_cxx
 krb5:
-- '1.14'
+- '1.16'
 libssh2:
 - '1.8'
 macos_machine:
@@ -31,5 +31,10 @@ pin_run_as_build:
     max_pin: x.x.x
   zlib:
     max_pin: x.x
+zip_keys:
+- - c_compiler
+  - channel_sources
+  - channel_targets
+  - build_number_decrement
 zlib:
 - '1.2'
