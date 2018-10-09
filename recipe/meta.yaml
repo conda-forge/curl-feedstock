@@ -43,6 +43,8 @@ outputs:
         - zlib
         - libssh2
         - krb5
+      run:
+        - libssh2
     build:
       run_exports:
         - {{ pin_subpackage('libcurl') }}
@@ -74,6 +76,7 @@ outputs:
         - krb5
       run:
         - {{ pin_subpackage('libcurl', exact=True) }}
+        - libssh2
     test:
       commands:
         # curl help commands on Windows have non-zero status codes.  Need other test.
