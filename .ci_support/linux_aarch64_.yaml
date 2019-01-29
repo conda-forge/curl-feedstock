@@ -1,13 +1,17 @@
-build_number_decrement:
-- '0'
+BUILD:
+- aarch64-conda_cos7-linux-gnu
 c_compiler:
 - gcc
+cdt_arch:
+- aarch64
+cdt_name:
+- cos7
 channel_sources:
-- conda-forge/label/gcc7,defaults
+- conda-forge,c4aarch64,defaults
 channel_targets:
-- conda-forge gcc7
+- conda-forge main
 docker_image:
-- condaforge/linux-anvil-comp7
+- condaforge/linux-anvil-aarch64
 krb5:
 - '1.16'
 libssh2:
@@ -27,11 +31,5 @@ pin_run_as_build:
     max_pin: x.x.x
   zlib:
     max_pin: x.x
-zip_keys:
-- - c_compiler
-  - channel_sources
-  - channel_targets
-  - docker_image
-  - build_number_decrement
 zlib:
 - '1.2'
