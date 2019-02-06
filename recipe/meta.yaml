@@ -1,4 +1,4 @@
-{% set version = "7.63.0" %}
+{% set version = "7.64.0" %}
 
 package:
   name: curl_split_recipe
@@ -6,7 +6,7 @@ package:
 
 source:
   url: http://curl.haxx.se/download/curl-{{ version }}.tar.bz2
-  sha256: 9bab7ed4ecff77020a312d84cc5fb7eb02d58419d218f267477a724a17fd8dd8
+  sha256: d573ba1c2d1cf9d8533fadcce480d778417964e8d04ccddcc76e591d544cf2eb
   patches:
     ###################################################
     # Raised issue upstream on this issue.            #
@@ -16,7 +16,7 @@ source:
     - drop_failing_tests_macos.diff  # [osx]
 
 build:
-  number: 1000
+  number: 0
 
 requirements:
   build:
