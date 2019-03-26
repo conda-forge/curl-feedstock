@@ -16,7 +16,7 @@ source:
     - drop_failing_tests_macos.diff  # [osx]
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
