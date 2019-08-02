@@ -23,6 +23,7 @@ requirements:
     - krb5
     - libssh2
     - openssl        # [unix]
+    - libnghttp2     # [unix]
     - zlib
 
 
@@ -34,11 +35,13 @@ outputs:
         - {{ compiler('c') }}
       host:
         - openssl   # [unix]
+        - libnghttp2   # [unix]
         - zlib
         - libssh2
         - krb5
       run:
         - libssh2
+        - libnghttp2   # [unix]
     build:
       run_exports:
         - {{ pin_subpackage('libcurl') }}
