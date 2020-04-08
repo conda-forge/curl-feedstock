@@ -1,4 +1,4 @@
-{% set version = "7.68.0" %}
+{% set version = "7.69.1" %}
 
 package:
   name: curl_split_recipe
@@ -6,10 +6,10 @@ package:
 
 source:
   url: http://curl.haxx.se/download/curl-{{ version }}.tar.bz2
-  sha256: 207f54917dd6a2dc733065ccf18d61bb5bebeaceb5df49cd9445483e8623eeb9
+  sha256: 2ff5e5bd507adf6aa88ff4bbafd4c7af464867ffb688be93b9930717a56c4de8
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -83,7 +83,7 @@ about:
   license_family: MIT
   license_file: COPYING
   summary: tool and library for transferring data with URL syntax
-  
+
   description: |
     Curl is an open source command line tool and library for transferring data
     with URL syntax. It is used in command lines or scripts to transfer data.
