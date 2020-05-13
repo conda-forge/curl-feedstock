@@ -11,7 +11,7 @@ channel_targets:
 krb5:
 - 1.17.1
 libssh2:
-- '1.8'
+- '1'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 macos_min_version:
@@ -22,8 +22,6 @@ perl:
 - 5.26.2
 pin_run_as_build:
   krb5:
-    max_pin: x.x
-  libssh2:
     max_pin: x.x
   openssl:
     max_pin: x.x.x
