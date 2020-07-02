@@ -28,6 +28,7 @@ requirements:
 
 outputs:
   - name: libcurl
+    script: install_dll.bat  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -53,6 +54,25 @@ outputs:
       commands:
         - curl-config --features       # [not win]
         - curl-config --protocols      # [not win]
+
+  - name: libcurl-static
+    build:
+      skip: true  # [unix]
+    script: install_static.bat  # [win]
+    requirements:
+      build:
+        - {{ compiler('c') }}
+      host:
+        - openssl   # [unix]
+        - zlib
+        - libssh2
+        - krb5
+        - libcurl
+      run:
+        - libssh2
+    test:
+      commands:
+        - if exist %LIBRARY_LIB%\libcurl_a.lib (exit 0) else (exit 1)  # [win]
 
   - name: curl
     files:
