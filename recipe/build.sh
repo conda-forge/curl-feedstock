@@ -21,6 +21,7 @@ fi
     --prefix=${PREFIX} \
     --host=${HOST} \
     --disable-ldap \
+    --disable-static \
     --with-ca-bundle=${PREFIX}/ssl/cacert.pem \
     --with-ssl=${PREFIX} \
     --with-zlib=${PREFIX} \
