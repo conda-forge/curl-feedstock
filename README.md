@@ -5,7 +5,7 @@ Home: http://curl.haxx.se/
 
 Package license: MIT/X derivate (http://curl.haxx.se/docs/copyright.html)
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: tool and library for transferring data with URL syntax
 
