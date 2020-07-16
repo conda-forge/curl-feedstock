@@ -59,24 +59,6 @@ outputs:
         - test ! -f ${PREFIX}/lib/libcurl.a          # [not win]
 
   - name: libcurl-static
-    requirements:
-      build:
-        - {{ compiler('c') }}
-      host:
-        - openssl   # [unix]
-        - zlib
-        - libssh2
-        - krb5
-        - libcurl
-    files:
-      - lib/libcurl.a*  # [unix]
-    test:
-      commands:
-        - test -f $PREFIX/lib/libcurl.a  # [not win]
-
-  - name: libcurl-static
-    build:
-      skip: true  # [unix]
     script: install_static.bat  # [win]
     requirements:
       build:
@@ -87,10 +69,11 @@ outputs:
         - libssh2
         - krb5
         - libcurl
-      run:
-        - libssh2
+    files:              # [unix]
+      - lib/libcurl.a*  # [unix]
     test:
       commands:
+        - test -f $PREFIX/lib/libcurl.a  # [not win]
         - if exist %LIBRARY_LIB%\libcurl_a.lib (exit 0) else (exit 1)  # [win]
 
   - name: curl
