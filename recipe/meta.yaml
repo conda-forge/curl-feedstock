@@ -45,7 +45,7 @@ outputs:
     files:
       - include/curl             # [unix]
       - lib/libcurl.so*          # [linux]
-      - lib/libcurl.dylib*       # [osx]
+      - lib/*.dylib              # [osx]
       - lib/pkgconfig/libcurl*   # [unix]
       - bin/curl-config          # [unix]
       - Library/bin/libcurl.dll  # [win]
