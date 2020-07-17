@@ -9,7 +9,7 @@ source:
   sha256: 9d52a4d80554f9b0d460ea2be5d7be99897a1a9f681ffafe739169afd6b4f224
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -28,6 +28,7 @@ requirements:
 
 outputs:
   - name: libcurl
+    script: install_dll.bat  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -43,7 +44,8 @@ outputs:
         - {{ pin_subpackage('libcurl') }}
     files:
       - include/curl             # [unix]
-      - lib/libcurl*             # [unix]
+      - lib/libcurl.so*          # [linux]
+      - lib/*.dylib              # [osx]
       - lib/pkgconfig/libcurl*   # [unix]
       - bin/curl-config          # [unix]
       - Library/bin/libcurl.dll  # [win]
@@ -55,6 +57,24 @@ outputs:
         - curl-config --protocols      # [not win]
         - test -f ${PREFIX}/lib/libcurl${SHLIB_EXT}  # [not win]
         - test ! -f ${PREFIX}/lib/libcurl.a          # [not win]
+
+  - name: libcurl-static
+    script: install_static.bat  # [win]
+    requirements:
+      build:
+        - {{ compiler('c') }}
+      host:
+        - openssl   # [unix]
+        - zlib
+        - libssh2
+        - krb5
+        - libcurl
+    files:              # [unix]
+      - lib/libcurl.a*  # [unix]
+    test:
+      commands:
+        - test -f $PREFIX/lib/libcurl.a  # [not win]
+        - if exist %LIBRARY_LIB%\libcurl_a.lib (exit 0) else (exit 1)  # [win]
 
   - name: curl
     files:
