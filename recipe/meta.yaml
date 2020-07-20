@@ -9,7 +9,7 @@ source:
   sha256: 9d52a4d80554f9b0d460ea2be5d7be99897a1a9f681ffafe739169afd6b4f224
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -45,7 +45,7 @@ outputs:
     files:
       - include/curl             # [unix]
       - lib/libcurl.so*          # [linux]
-      - lib/*.dylib              # [osx]
+      - lib/libcurl*.dylib       # [osx]
       - lib/pkgconfig/libcurl*   # [unix]
       - bin/curl-config          # [unix]
       - Library/bin/libcurl.dll  # [win]
@@ -68,7 +68,7 @@ outputs:
         - zlib
         - libssh2
         - krb5
-        - libcurl
+        - {{ pin_subpackage('libcurl', exact=True) }}
     files:              # [unix]
       - lib/libcurl.a*  # [unix]
     test:
