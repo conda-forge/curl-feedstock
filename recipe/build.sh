@@ -26,6 +26,7 @@ fi
     --with-zlib=${PREFIX} \
     --with-gssapi=${PREFIX} \
     --with-libssh2=${PREFIX} \
+    --with-nghttp2=${PREFIX} \
 || cat config.log
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
