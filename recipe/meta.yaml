@@ -9,7 +9,7 @@ source:
   sha256: 9d52a4d80554f9b0d460ea2be5d7be99897a1a9f681ffafe739169afd6b4f224
 
 build:
-  number: 4
+  number: 5
 
 requirements:
   build:
@@ -105,7 +105,7 @@ outputs:
 
 about:
   home: http://curl.haxx.se/
-  license: MIT/X derivate (http://curl.haxx.se/docs/copyright.html)
+  license: curl
   license_family: MIT
   license_file: COPYING
   summary: tool and library for transferring data with URL syntax
