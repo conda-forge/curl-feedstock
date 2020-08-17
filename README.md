@@ -31,10 +31,10 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux</td>
+              <td>linux_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=203&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/curl-feedstock?branchName=master&jobName=linux&configuration=linux_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/curl-feedstock?branchName=master&jobName=linux&configuration=linux_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -52,17 +52,24 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>osx</td>
+              <td>osx_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=203&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/curl-feedstock?branchName=master&jobName=osx&configuration=osx_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/curl-feedstock?branchName=master&jobName=osx&configuration=osx_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>win</td>
+              <td>osx_arm64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=203&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/curl-feedstock?branchName=master&jobName=win&configuration=win_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/curl-feedstock?branchName=master&jobName=osx&configuration=osx_arm64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=203&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/curl-feedstock?branchName=master&jobName=win&configuration=win_64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -80,6 +87,7 @@ Current release info
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-curl-green.svg)](https://anaconda.org/conda-forge/curl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/curl.svg)](https://anaconda.org/conda-forge/curl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/curl.svg)](https://anaconda.org/conda-forge/curl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/curl.svg)](https://anaconda.org/conda-forge/curl) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libcurl-green.svg)](https://anaconda.org/conda-forge/libcurl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libcurl.svg)](https://anaconda.org/conda-forge/libcurl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcurl.svg)](https://anaconda.org/conda-forge/libcurl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libcurl.svg)](https://anaconda.org/conda-forge/libcurl) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libcurl--static-green.svg)](https://anaconda.org/conda-forge/libcurl-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libcurl-static.svg)](https://anaconda.org/conda-forge/libcurl-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcurl-static.svg)](https://anaconda.org/conda-forge/libcurl-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libcurl-static.svg)](https://anaconda.org/conda-forge/libcurl-static) |
 
 Installing curl_split_recipe
 ============================
@@ -90,10 +98,10 @@ Installing `curl_split_recipe` from the `conda-forge` channel can be achieved by
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `curl, libcurl` can be installed with:
+Once the `conda-forge` channel has been enabled, `curl, libcurl, libcurl-static` can be installed with:
 
 ```
-conda install curl libcurl
+conda install curl libcurl libcurl-static
 ```
 
 It is possible to list all of the versions of `curl` available on your platform with:
