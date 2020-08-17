@@ -1,11 +1,11 @@
 MACOSX_DEPLOYMENT_TARGET:
-- '10.9'
+- '11.0'
 c_compiler:
 - clang
 c_compiler_version:
-- '9'
+- '11'
 channel_sources:
-- conda-forge,defaults
+- conda-forge/label/llvm_rc,conda-forge,https://conda-web.anaconda.org/conda-forge
 channel_targets:
 - conda-forge main
 krb5:
@@ -13,9 +13,9 @@ krb5:
 libssh2:
 - '1'
 macos_machine:
-- x86_64-apple-darwin13.4.0
+- arm64-apple-darwin20.0.0
 macos_min_version:
-- '10.9'
+- '11.0'
 openssl:
 - 1.1.1
 perl:
@@ -29,5 +29,7 @@ pin_run_as_build:
     max_pin: x.x.x
   zlib:
     max_pin: x.x
+target_platform:
+- osx-arm64
 zlib:
 - '1.2'
