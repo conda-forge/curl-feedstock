@@ -13,6 +13,7 @@ build:
 
 requirements:
   build:
+    - libtool  # [unix]
     - {{ compiler('c') }}
     - make             # [unix]
     # perl is required to run the tests on UNIX.
