@@ -13,6 +13,7 @@ export CFLAGS="$CFLAGS $CPPFLAGS"
     --with-ssl=${PREFIX} \
     --with-zlib=${PREFIX} \
     --with-gssapi=${PREFIX} \
+    --with-spnego \
     --with-libssh2=${PREFIX} \
     --with-nghttp2=${PREFIX} \
 || cat config.log
