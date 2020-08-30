@@ -3,7 +3,7 @@ About curl_split_recipe
 
 Home: http://curl.haxx.se/
 
-Package license: MIT/X derivate (http://curl.haxx.se/docs/copyright.html)
+Package license: curl
 
 Feedstock license: BSD-3-Clause
 
