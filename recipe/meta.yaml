@@ -102,7 +102,7 @@ outputs:
         # curl help commands on Windows have non-zero status codes.  Need other test.
         - curl --help
         # Try downloading something from https to make sure the certs are used correctly.
-        - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE
+        - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE.txt
         - test -f %LIBRARY_BIN%\curl.exe  # [win]
 
 about:
