@@ -9,7 +9,7 @@ source:
   sha256: 9d52a4d80554f9b0d460ea2be5d7be99897a1a9f681ffafe739169afd6b4f224
 
 build:
-  number: 6
+  number: 8
 
 requirements:
   build:
@@ -30,7 +30,6 @@ requirements:
 
 outputs:
   - name: libcurl
-    script: install_dll.bat  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -54,16 +53,19 @@ outputs:
       - bin/curl-config          # [unix]
       - Library/bin/libcurl.dll  # [win]
       - Library/include/curl     # [win]
-      - Library/lib/libcurl*     # [win]
+      - Library/lib/libcurl.lib  # [win]
+      - Library/lib/libcurl.exp  # [win]
     test:
       commands:
         - curl-config --features       # [not win]
         - curl-config --protocols      # [not win]
         - test -f ${PREFIX}/lib/libcurl${SHLIB_EXT}  # [not win]
         - test ! -f ${PREFIX}/lib/libcurl.a          # [not win]
+        - if exist %LIBRARY_BIN%\curl.exe exit 1     # [win]
+        - if exist %LIBRARY_LIB%\libcurl_a.lib exit 1     # [win]
+        - if not exist %LIBRARY_BIN%\libcurl.dll exit 1   # [win]
 
   - name: libcurl-static
-    script: install_static.bat  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -73,18 +75,20 @@ outputs:
         - libssh2
         - krb5
         - {{ pin_subpackage('libcurl', exact=True) }}
-    files:              # [unix]
+      run:
+        - {{ pin_subpackage('libcurl', exact=True) }}
+    files:
       - lib/libcurl.a*  # [unix]
+      - Library/lib/libcurl_a.lib  # [win]
     test:
       commands:
         - test -f $PREFIX/lib/libcurl.a  # [not win]
-        - if exist %LIBRARY_LIB%\libcurl_a.lib (exit 0) else (exit 1)  # [win]
+        - if not exist %LIBRARY_LIB%\libcurl_a.lib exit 1  # [win]
 
   - name: curl
     files:
       - bin/curl               # [unix]
-      - Library/bin/curl.exe   # [win]
-      - Library/bin/curl.exe.manifest  # [win]
+      - Library/bin/curl.exe*   # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -101,7 +105,8 @@ outputs:
         # curl help commands on Windows have non-zero status codes.  Need other test.
         - curl --help
         # Try downloading something from https to make sure the certs are used correctly.
-        - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE
+        - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE.txt
+        - if not exist %LIBRARY_BIN%\curl.exe exit 1  # [win]
 
 about:
   home: http://curl.haxx.se/
