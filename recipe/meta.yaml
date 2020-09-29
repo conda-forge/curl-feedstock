@@ -9,7 +9,7 @@ source:
   sha256: 9d52a4d80554f9b0d460ea2be5d7be99897a1a9f681ffafe739169afd6b4f224
 
 build:
-  number: 6
+  number: 7
 
 requirements:
   build:
@@ -61,6 +61,7 @@ outputs:
         - curl-config --protocols      # [not win]
         - test -f ${PREFIX}/lib/libcurl${SHLIB_EXT}  # [not win]
         - test ! -f ${PREFIX}/lib/libcurl.a          # [not win]
+        - test ! -f %LIBRARY_BIN%\curl.exe  # [win]
 
   - name: libcurl-static
     script: install_static.bat  # [win]
@@ -79,6 +80,7 @@ outputs:
       commands:
         - test -f $PREFIX/lib/libcurl.a  # [not win]
         - if exist %LIBRARY_LIB%\libcurl_a.lib (exit 0) else (exit 1)  # [win]
+        - test -f %LIBRARY_BIN%\curl.exe  # [win]
 
   - name: curl
     files:
