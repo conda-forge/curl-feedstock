@@ -80,7 +80,6 @@ outputs:
       commands:
         - test -f $PREFIX/lib/libcurl.a  # [not win]
         - if exist %LIBRARY_LIB%\libcurl_a.lib (exit 0) else (exit 1)  # [win]
-        - test -f %LIBRARY_BIN%\curl.exe  # [win]
 
   - name: curl
     files:
@@ -104,6 +103,7 @@ outputs:
         - curl --help
         # Try downloading something from https to make sure the certs are used correctly.
         - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE
+        - test -f %LIBRARY_BIN%\curl.exe  # [win]
 
 about:
   home: http://curl.haxx.se/
