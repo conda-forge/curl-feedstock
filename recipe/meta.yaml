@@ -84,8 +84,7 @@ outputs:
   - name: curl
     files:
       - bin/curl               # [unix]
-      - Library/bin/curl.exe   # [win]
-      - Library/bin/curl.exe.manifest  # [win]
+      - Library/bin/curl.exe*   # [win]
     requirements:
       build:
         - {{ compiler('c') }}
