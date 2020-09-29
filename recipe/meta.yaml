@@ -30,7 +30,6 @@ requirements:
 
 outputs:
   - name: libcurl
-    script: install_dll.bat  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -61,10 +60,11 @@ outputs:
         - curl-config --protocols      # [not win]
         - test -f ${PREFIX}/lib/libcurl${SHLIB_EXT}  # [not win]
         - test ! -f ${PREFIX}/lib/libcurl.a          # [not win]
-        - test ! -f %LIBRARY_BIN%\curl.exe  # [win]
+        - if exist %LIBRARY_BIN%\curl.exe exit 1     # [win]
+        - if exist %LIBRARY_LIB%\libcurl_a.lib exit 1     # [win]
+        - if not exist %LIBRARY_BIN%\libcurl.dll exit 1   # [win]
 
   - name: libcurl-static
-    script: install_static.bat  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -74,12 +74,13 @@ outputs:
         - libssh2
         - krb5
         - {{ pin_subpackage('libcurl', exact=True) }}
-    files:              # [unix]
+    files:
       - lib/libcurl.a*  # [unix]
+      - Library/lib/libcurl_a.lib  # [win]
     test:
       commands:
         - test -f $PREFIX/lib/libcurl.a  # [not win]
-        - if exist %LIBRARY_LIB%\libcurl_a.lib (exit 0) else (exit 1)  # [win]
+        - if not exist %LIBRARY_LIB%\libcurl_a.lib exit 1  # [win]
 
   - name: curl
     files:
