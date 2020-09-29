@@ -6,7 +6,9 @@ if %ARCH% == 32 (
     set ARCH_STRING=x64
 )
 
-robocopy ..\builds\libcurl-vc%VS_MAJOR:"=%-%ARCH_STRING%-release-dll-zlib-dll-ssh2-dll-ipv6-sspi-winssl\ %LIBRARY_PREFIX% *.* /E
+set BUILD_FOLDER=..\builds\libcurl-vc%VS_MAJOR:"=%-%ARCH_STRING%-release-dll-zlib-dll-ssh2-dll-ipv6-sspi-winssl
+
+robocopy %BUILD_FOLDER%\ %LIBRARY_PREFIX% *.* /E /XF %BUILD_FOLDER%\curl.exe*
 if %ERRORLEVEL% GTR 3 exit 1
 
 exit 0
