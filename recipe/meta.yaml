@@ -106,7 +106,7 @@ outputs:
         - curl --help
         # Try downloading something from https to make sure the certs are used correctly.
         - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE.txt
-        - test -f %LIBRARY_BIN%\curl.exe  # [win]
+        - if not exist %LIBRARY_BIN%\curl.exe exit 1  # [win]
 
 about:
   home: http://curl.haxx.se/
