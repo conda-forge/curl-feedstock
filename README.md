@@ -5,9 +5,13 @@ Home: http://curl.haxx.se/
 
 Package license: curl
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/curl-feedstock/blob/master/LICENSE.txt)
 
 Summary: tool and library for transferring data with URL syntax
+
+Development: https://github.com/curl/curl
+
+Documentation: https://curl.haxx.se/docs/
 
 Curl is an open source command line tool and library for transferring data
 with URL syntax. It is used in command lines or scripts to transfer data.
