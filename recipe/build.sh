@@ -5,6 +5,10 @@ cp $BUILD_PREFIX/share/libtool/build-aux/config.* .
 # need macosx-version-min flags set in cflags and not cppflags
 export CFLAGS="$CFLAGS $CPPFLAGS"
 
+if [[ $target_platform =~ osx.* ]]; then
+	USE_DARWIN_SSL=--with-darwinssl
+fi
+
 ./configure \
     --prefix=${PREFIX} \
     --host=${HOST} \
@@ -15,6 +19,7 @@ export CFLAGS="$CFLAGS $CPPFLAGS"
     --with-gssapi=${PREFIX} \
     --with-libssh2=${PREFIX} \
     --with-nghttp2=${PREFIX} \
+    $USE_DARWIN_SSL \
 || cat config.log
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
