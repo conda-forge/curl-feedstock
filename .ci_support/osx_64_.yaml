@@ -9,7 +9,7 @@ channel_sources:
 channel_targets:
 - conda-forge main
 krb5:
-- 1.17.1
+- '1.19'
 libssh2:
 - '1'
 macos_machine:
