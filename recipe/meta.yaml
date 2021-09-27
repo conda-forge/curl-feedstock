@@ -94,6 +94,9 @@ outputs:
         - {{ compiler('c') }}
       host:
         - {{ pin_subpackage('libcurl', exact=True) }}
+        # OpenSSL is needed here to prevent conda-build from getting confused while
+        # both OpenSSL 1.1.1 and 3.0.0 and being supported
+        - openssl   # [unix]
         - zlib
         - libssh2
         - krb5
