@@ -19,14 +19,12 @@ krb5:
 libssh2:
 - '1'
 openssl:
-- 1.1.1
+- '3'
 perl:
 - 5.26.2
 pin_run_as_build:
   krb5:
     max_pin: x.x
-  openssl:
-    max_pin: x.x.x
   perl:
     max_pin: x.x.x
   zlib:
