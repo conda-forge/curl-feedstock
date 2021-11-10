@@ -17,12 +17,10 @@ macos_machine:
 openssl:
 - '3'
 perl:
-- 5.32.0
+- 5.32.1
 pin_run_as_build:
   krb5:
     max_pin: x.x
-  perl:
-    max_pin: x.x.x
   zlib:
     max_pin: x.x
 target_platform:
