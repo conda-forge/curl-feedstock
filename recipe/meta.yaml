@@ -64,6 +64,10 @@ outputs:
         - if exist %LIBRARY_BIN%\curl.exe exit 1     # [win]
         - if exist %LIBRARY_LIB%\libcurl_a.lib exit 1     # [win]
         - if not exist %LIBRARY_BIN%\libcurl.dll exit 1   # [win]
+        - CURL_SSL_BACKENDS=$(curl-config --ssl-backends)                            # [unix]
+        - if ! echo $CURL_SSL_BACKENDS | grep -q "OpenSSL"; then exit 1; fi          # [unix]
+        - if ! echo $CURL_SSL_BACKENDS | grep -q "Secure Transport"; then exit 1; fi  # [osx]
+
 
   - name: libcurl-static
     requirements:
