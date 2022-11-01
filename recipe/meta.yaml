@@ -89,7 +89,7 @@ outputs:
   - name: libcurl-securetransport-static
     build:
       skip: true  # [not osx]
-    script: install.sh  # [unix]
+    script: build.sh  # [unix]
     requirements:
       build:
         - libtool     # [unix]
