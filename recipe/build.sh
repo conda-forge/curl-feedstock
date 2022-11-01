@@ -5,12 +5,18 @@ cp $BUILD_PREFIX/share/libtool/build-aux/config.* .
 # need macosx-version-min flags set in cflags and not cppflags
 export CFLAGS="$CFLAGS $CPPFLAGS"
 
+if [[ "$target_platform" == "osx-"* ]]; then
+    USESSL="--with-openssl=${PREFIX} --with-secure-transport --with-default-ssl-backend=openssl"
+else
+    USESSL="--with-openssl=${PREFIX}"
+fi
+
 ./configure \
     --prefix=${PREFIX} \
     --host=${HOST} \
     --disable-ldap \
     --with-ca-bundle=${PREFIX}/ssl/cacert.pem \
-    --with-ssl=${PREFIX} \
+    $USESSL \
     --with-zlib=${PREFIX} \
     --with-gssapi=${PREFIX} \
     --with-libssh2=${PREFIX} \
