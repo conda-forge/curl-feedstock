@@ -109,6 +109,8 @@ outputs:
     test:
       commands:
         - test -f $PREFIX/lib/libcurl.a  # [not win]
+        - CURL_SSL_BACKENDS=$(curl-config --ssl-backends)
+        - if ! echo $CURL_SSL_BACKENDS | grep -q "Secure Transport"; then exit 1; fi
 
   - name: curl
     script: install.sh  # [unix]
