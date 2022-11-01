@@ -24,3 +24,6 @@ fi
 || cat config.log
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
+
+# TODO :: test 1119... exit FAILED
+# make test

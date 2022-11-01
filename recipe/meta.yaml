@@ -27,7 +27,6 @@ requirements:
     - libnghttp2     # [unix]
     - zlib
 
-
 outputs:
   - name: libcurl
     script: install.sh  # [unix]
@@ -90,7 +89,8 @@ outputs:
         - if not exist %LIBRARY_LIB%\libcurl_a.lib exit 1  # [win]
 
   - name: libcurl-securetransport-static
-    skip: true  # [not osx]
+    build:
+      skip: true  # [not osx]
     script: install.sh  # [unix]
     requirements:
       build:

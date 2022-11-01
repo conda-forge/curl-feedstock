@@ -1,5 +1,5 @@
-# TODO :: test 1119... exit FAILED
-# make test
+#!/bin/bash
+
 make install
 
 # Includes man pages and other miscellaneous.
