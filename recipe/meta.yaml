@@ -17,7 +17,7 @@ requirements:
     - {{ compiler('c') }}
     - make             # [unix]
     # perl is required to run the tests on UNIX.
-    - perl  # [unix]
+    # - perl  # [unix]
     - pkg-config  # [unix]
   host:
     - zlib
@@ -30,6 +30,8 @@ requirements:
 
 outputs:
   - name: libcurl
+    script: install.sh  # [unix]
+    script: install.bat  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -66,6 +68,8 @@ outputs:
         - if not exist %LIBRARY_BIN%\libcurl.dll exit 1   # [win]
 
   - name: libcurl-static
+    script: install.sh  # [unix]
+    script: install.bat  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -85,7 +89,32 @@ outputs:
         - test -f $PREFIX/lib/libcurl.a  # [not win]
         - if not exist %LIBRARY_LIB%\libcurl_a.lib exit 1  # [win]
 
+  - name: libcurl-securetransport-static
+    skip: true  # [not osx]
+    script: install.sh  # [unix]
+    requirements:
+      build:
+        - libtool  # [unix]
+        - {{ compiler('c') }}
+        - make             # [unix]
+        # perl is required to run the tests on UNIX.
+        # - perl  # [unix]
+        - pkg-config  # [unix]
+      host:
+        - libnghttp2   # [unix]
+        - libssh2
+        - zlib
+        - krb5
+      run:
+        - libnghttp2   # [unix]
+
+    test:
+      commands:
+        - test -f $PREFIX/lib/libcurl.a  # [not win]
+
   - name: curl
+    script: install.sh  # [unix]
+    script: install.bat  # [win]
     files:
       - bin/curl               # [unix]
       - Library/bin/curl.exe*   # [win]
@@ -110,6 +139,7 @@ outputs:
         # Try downloading something from https to make sure the certs are used correctly.
         - curl https://raw.githubusercontent.com/conda-forge/curl-feedstock/master/LICENSE.txt
         - if not exist %LIBRARY_BIN%\curl.exe exit 1  # [win]
+        - if exist %LIBRARY_LIB%\libcurl_a.lib exit 1  # [win]
 
 about:
   home: http://curl.haxx.se/
