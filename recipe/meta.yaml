@@ -17,7 +17,7 @@ requirements:
     - {{ compiler('c') }}
     - make             # [unix]
     # perl is required to run the tests on UNIX.
-    # - perl  # [unix]
+    - perl  # [unix]
     - pkg-config  # [unix]
   host:
     - zlib
@@ -34,6 +34,8 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - make                # [unix]
+        - libtool             # [unix]
       host:
         - openssl   # [unix]
         - libnghttp2   # [unix]
@@ -46,25 +48,19 @@ outputs:
     build:
       run_exports:
         - {{ pin_subpackage('libcurl') }}
-    files:
-      - include/curl             # [unix]
-      - lib/libcurl.so*          # [linux]
-      - lib/libcurl*.dylib       # [osx]
-      - lib/pkgconfig/libcurl*   # [unix]
-      - bin/curl-config          # [unix]
-      - Library/bin/libcurl.dll  # [win]
-      - Library/include/curl     # [win]
-      - Library/lib/libcurl.lib  # [win]
-      - Library/lib/libcurl.exp  # [win]
     test:
       commands:
         - curl-config --features       # [not win]
         - curl-config --protocols      # [not win]
         - test -f ${PREFIX}/lib/libcurl${SHLIB_EXT}  # [not win]
+        - test -f ${PREFIX}/include/curl/curl.h  # [not win]
         - test ! -f ${PREFIX}/lib/libcurl.a          # [not win]
         - if exist %LIBRARY_BIN%\curl.exe exit 1     # [win]
         - if exist %LIBRARY_LIB%\libcurl_a.lib exit 1     # [win]
         - if not exist %LIBRARY_BIN%\libcurl.dll exit 1   # [win]
+        - if not exist %LIBRARY_LIB%\libcurl.exp exit 1   # [win]
+        - if not exist %LIBRARY_LIB%\libcurl.lib exit 1   # [win]
+        - if not exist %LIBRARY_PREFIX%\include\curl\curl.h exit 1   # [win]
 
   - name: libcurl-static
     script: install.sh  # [unix]
@@ -72,6 +68,8 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - make                # [unix]
+        - libtool             # [unix]
       host:
         - openssl   # [unix]
         - zlib
@@ -94,14 +92,14 @@ outputs:
     script: install.sh  # [unix]
     requirements:
       build:
-        - libtool  # [unix]
+        - libtool     # [unix]
         - {{ compiler('c') }}
-        - make             # [unix]
+        - make        # [unix]
         # perl is required to run the tests on UNIX.
-        # - perl  # [unix]
+        - perl        # [unix]
         - pkg-config  # [unix]
       host:
-        - libnghttp2   # [unix]
+        - libnghttp2  # [unix]
         - libssh2
         - zlib
         - krb5
@@ -115,12 +113,11 @@ outputs:
   - name: curl
     script: install.sh  # [unix]
     script: install.bat  # [win]
-    files:
-      - bin/curl               # [unix]
-      - Library/bin/curl.exe*   # [win]
     requirements:
       build:
         - {{ compiler('c') }}
+        - make                # [unix]
+        - libtool             # [unix]
       host:
         - {{ pin_subpackage('libcurl', exact=True) }}
         # OpenSSL is needed here to prevent conda-build from getting confused while
