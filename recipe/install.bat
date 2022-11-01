@@ -17,7 +17,7 @@ robocopy ..\builds\libcurl-vc%VS_MAJOR:"=%-%ARCH_STRING%-release-dll-zlib-dll-ss
 if %ERRORLEVEL% GTR 3 exit 1
 
 if NOT %PKG_NAME% == "curl" (
-    del %LIBRARY_PREFIX%\bin\curl
+    del %LIBRARY_PREFIX%\bin\curl.exe
     if %ERRORLEVEL% GTR 3 exit 1
 )
 
