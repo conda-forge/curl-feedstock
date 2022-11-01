@@ -20,8 +20,6 @@ libssh2:
 - '1'
 openssl:
 - 1.1.1
-perl:
-- 5.32.1
 target_platform:
 - linux-aarch64
 zlib:

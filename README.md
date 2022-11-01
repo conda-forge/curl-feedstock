@@ -133,6 +133,7 @@ Current release info
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-curl-green.svg)](https://anaconda.org/conda-forge/curl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/curl.svg)](https://anaconda.org/conda-forge/curl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/curl.svg)](https://anaconda.org/conda-forge/curl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/curl.svg)](https://anaconda.org/conda-forge/curl) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libcurl-green.svg)](https://anaconda.org/conda-forge/libcurl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libcurl.svg)](https://anaconda.org/conda-forge/libcurl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcurl.svg)](https://anaconda.org/conda-forge/libcurl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libcurl.svg)](https://anaconda.org/conda-forge/libcurl) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libcurl--securetransport--static-green.svg)](https://anaconda.org/conda-forge/libcurl-securetransport-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libcurl-securetransport-static.svg)](https://anaconda.org/conda-forge/libcurl-securetransport-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcurl-securetransport-static.svg)](https://anaconda.org/conda-forge/libcurl-securetransport-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libcurl-securetransport-static.svg)](https://anaconda.org/conda-forge/libcurl-securetransport-static) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libcurl--static-green.svg)](https://anaconda.org/conda-forge/libcurl-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libcurl-static.svg)](https://anaconda.org/conda-forge/libcurl-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcurl-static.svg)](https://anaconda.org/conda-forge/libcurl-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libcurl-static.svg)](https://anaconda.org/conda-forge/libcurl-static) |
 
 Installing curl_split_recipe
@@ -145,16 +146,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `curl, libcurl, libcurl-static` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `curl, libcurl, libcurl-securetransport-static, libcurl-static` can be installed with `conda`:
 
 ```
-conda install curl libcurl libcurl-static
+conda install curl libcurl libcurl-securetransport-static libcurl-static
 ```
 
 or with `mamba`:
 
 ```
-mamba install curl libcurl libcurl-static
+mamba install curl libcurl libcurl-securetransport-static libcurl-static
 ```
 
 It is possible to list all of the versions of `curl` available on your platform with `conda`:
