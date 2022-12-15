@@ -5,7 +5,7 @@ channel_sources:
 channel_targets:
 - conda-forge main
 krb5:
-- '1.19'
+- '1.20'
 libssh2:
 - '1'
 target_platform:
