@@ -9,7 +9,7 @@ source:
   sha256: 8224b45cce12abde039c12dc0711b7ea85b104b9ad534d6e4c5b4e188a61c907
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -21,6 +21,7 @@ requirements:
     - pkg-config  # [unix]
   host:
     - zlib
+    - zstd  # [unix]
     - krb5
     - libssh2
     - openssl        # [unix]
@@ -37,6 +38,7 @@ outputs:
         - openssl   # [unix]
         - libnghttp2   # [unix]
         - zlib
+        - zstd  # [unix]
         - libssh2
         - krb5
       run:
@@ -76,6 +78,7 @@ outputs:
       host:
         - openssl   # [unix]
         - zlib
+        - zstd  # [unix]
         - libssh2
         - krb5
         - {{ pin_subpackage('libcurl', exact=True) }}
@@ -102,6 +105,7 @@ outputs:
         # both OpenSSL 1.1.1 and 3.0.0 and being supported
         - openssl   # [unix]
         - zlib
+        - zstd  # [unix]
         - libssh2
         - krb5
       run:
