@@ -1,11 +1,11 @@
-About curl_split_recipe
-=======================
+About curl_split_recipe-feedstock
+=================================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/curl-feedstock/blob/main/LICENSE.txt)
 
 Home: http://curl.haxx.se/
 
 Package license: curl
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/curl-feedstock/blob/main/LICENSE.txt)
 
 Summary: tool and library for transferring data with URL syntax
 
