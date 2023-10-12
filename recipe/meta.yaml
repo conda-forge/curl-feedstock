@@ -28,7 +28,6 @@ requirements:
     - libnghttp2     # [unix]
     - zlib
 
-
 outputs:
   - name: libcurl
     requirements:
@@ -58,6 +57,12 @@ outputs:
       - Library/lib/libcurl.lib  # [win]
       - Library/lib/libcurl.exp  # [win]
     test:
+      files:
+        - test/
+      requires:
+        - {{ compiler('c') }}
+        - cmake
+        - ninja
       commands:
         - curl-config --features       # [not win]
         - curl-config --protocols      # [not win]
@@ -69,7 +74,11 @@ outputs:
         - CURL_SSL_BACKENDS=$(curl-config --ssl-backends)                            # [unix]
         - if ! echo $CURL_SSL_BACKENDS | grep -q "OpenSSL"; then exit 1; fi          # [unix]
         - if ! echo $CURL_SSL_BACKENDS | grep -q "Secure Transport"; then exit 1; fi  # [osx]
-
+        # Cmake tests trying to link to the library
+        - cmake -G Ninja -S test/ -B build/ -D LIB_NAME="libcurl${SHLIB_EXT}" ${CMAKE_ARGS}  # [unix]
+        - cmake -G Ninja -S test/ -B build/ -D LIB_NAME=libcurl %CMAKE_ARGS%                 # [win]
+        - cmake --build build/
+        - cmake --build build/ --target test
 
   - name: libcurl-static
     requirements:
