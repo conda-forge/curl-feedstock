@@ -57,7 +57,11 @@ endforeach()
 if(APPLE)
     target_link_libraries(
         test-libcurl
-        PRIVATE "-framework CoreFoundation" "-framework CoreServices" "-framework Security"
+        PRIVATE
+            "-framework CoreFoundation"
+            "-framework CoreServices"
+            "-framework Security"
+            "-framework Kerberos"
     )
 endif()
 
