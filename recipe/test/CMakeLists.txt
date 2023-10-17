@@ -61,5 +61,9 @@ if(APPLE)
     )
 endif()
 
+if(NOT BUILD_SHARED_LIBS)
+    target_compile_definitions(test-libcurl PRIVATE CURL_STATICLIB)
+endif()
+
 enable_testing()
 add_test(NAME test-libcurl COMMAND test-libcurl https://google.com)

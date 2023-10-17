@@ -104,10 +104,10 @@ outputs:
         - cmake
         - ninja
         - libssh2-static
-        - libnghttp2-static
-        - zstd-static
-        - krb5-static
-        - libopenssl-static
+        - libnghttp2-static  # [unix]
+        - zstd-static        # [unix]
+        - krb5-static        # [unix]
+        - libopenssl-static  # [unix]
         - zlib
       commands:
         - test -f $PREFIX/lib/libcurl.a  # [not win]
