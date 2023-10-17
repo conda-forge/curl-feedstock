@@ -75,8 +75,8 @@ outputs:
         - if ! echo $CURL_SSL_BACKENDS | grep -q "OpenSSL"; then exit 1; fi          # [unix]
         - if ! echo $CURL_SSL_BACKENDS | grep -q "Secure Transport"; then exit 1; fi  # [osx]
         # Cmake tests trying to link to the library
-        - cmake -G Ninja -S test/ -B build/ -D LIB_NAME="libcurl${SHLIB_EXT}" ${CMAKE_ARGS}  # [unix]
-        - cmake -G Ninja -S test/ -B build/ -D LIB_NAME=libcurl %CMAKE_ARGS%                 # [win]
+        - cmake -G Ninja -S test/ -B build/ -D BUILD_SHARED_LIBS=ON ${CMAKE_ARGS}  # [unix]
+        - cmake -G Ninja -S test/ -B build/ -D BUILD_SHARED_LIBS=ON %CMAKE_ARGS%   # [win]
         - cmake --build build/
         - cmake --build build/ --target test
 
@@ -97,9 +97,26 @@ outputs:
       - lib/libcurl.a*  # [unix]
       - Library/lib/libcurl_a.lib  # [win]
     test:
+      files:
+        - test/
+      requires:
+        - {{ compiler('c') }}
+        - cmake
+        - ninja
+        - libssh2-static
+        - libnghttp2-static
+        - zstd-static
+        - krb5-static
+        - libopenssl-static
+        - zlib
       commands:
         - test -f $PREFIX/lib/libcurl.a  # [not win]
         - if not exist %LIBRARY_LIB%\libcurl_a.lib exit 1  # [win]
+        # Cmake tests trying to link to the library
+        - cmake -G Ninja -S test/ -B build/ -D BUILD_SHARED_LIBS=OFF ${CMAKE_ARGS}  # [unix]
+        - cmake -G Ninja -S test/ -B build/ -D BUILD_SHARED_LIBS=OFF %CMAKE_ARGS%   # [win]
+        - cmake --build build/
+        - cmake --build build/ --target test
 
   - name: curl
     files:
