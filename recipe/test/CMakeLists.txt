@@ -54,5 +54,12 @@ foreach(dep ${required_deps})
     target_link_libraries(test-libcurl PRIVATE ${dep_LIBRARY})
 endforeach()
 
+if(APPLE)
+    target_link_libraries(
+        test-libcurl
+        PRIVATE "-framework CoreFoundation" "-framework CoreServices" "-framework Security"
+    )
+endif()
+
 enable_testing()
 add_test(NAME test-libcurl COMMAND test-libcurl https://google.com)
