@@ -17,7 +17,21 @@ if(BUILD_SHARED_LIBS)
     endif()
 else()
     if(WIN32)
-        set(required_deps libcurl_a)
+        set(
+            required_deps
+            # curl
+            libcurl_a
+            # openssl
+            libssl_static
+            libcrypto_static
+            # Misc
+            libssh2_static
+            zlibstatic
+            # Windows libraries
+            Wldap32
+            Crypt32
+            ws2_32
+        )
     else()
         # Order matters; dependent before dependency
         set(

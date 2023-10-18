@@ -104,11 +104,11 @@ outputs:
         - cmake
         - ninja
         - libssh2-static
+        - libopenssl-static
+        - zlib
         - libnghttp2-static  # [unix]
         - zstd-static        # [unix]
         - krb5-static        # [unix]
-        - libopenssl-static  # [unix]
-        - zlib
       commands:
         - test -f $PREFIX/lib/libcurl.a  # [not win]
         - if not exist %LIBRARY_LIB%\libcurl_a.lib exit 1  # [win]
