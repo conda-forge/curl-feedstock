@@ -15,6 +15,7 @@ fi
     --prefix=${PREFIX} \
     --host=${HOST} \
     --disable-ldap \
+    --enable-websockets \
     --with-ca-bundle=${PREFIX}/ssl/cacert.pem \
     $USESSL \
     --with-zlib=${PREFIX} \
