@@ -1,4 +1,4 @@
-{% set version = "8.8.0" %}
+{% set version = "8.9.0" %}
 
 package:
   name: curl_split_recipe
@@ -6,10 +6,10 @@ package:
 
 source:
   url: http://curl.haxx.se/download/curl-{{ version }}.tar.bz2
-  sha256: 40d3792d38cfa244d8f692974a567e9a5f3387c547579f1124e95ea2a1020d0d
+  sha256: 1cb4c3657bd092b8c8e586afe87679c0aaa3d761af2aebabd6effd553e57936c
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
