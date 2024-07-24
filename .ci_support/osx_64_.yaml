@@ -27,6 +27,6 @@ perl:
 target_platform:
 - osx-64
 zlib:
-- '1.2'
+- '1'
 zstd:
 - '1.5'
