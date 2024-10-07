@@ -9,26 +9,25 @@ source:
   sha256: 3763cd97aae41dcf41950d23e87ae23b2edb2ce3a5b0cf678af058c391b6ae31
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
-    - libtool  # [unix]
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
-    - make             # [unix]
+    - libtool        # [unix]
+    - make           # [unix]
     # perl is required to run the tests on UNIX.
-    - perl  # [unix]
-    - pkg-config  # [unix]
+    - perl           # [unix]
+    - pkg-config     # [unix]
   host:
-    - zlib
-    - zstd  # [unix]
+    - zstd           # [unix]
+    - libnghttp2     # [unix]
+    - openssl        # [unix]
+    - brotli
     - krb5
     - libssh2
-    - openssl        # [unix]
-    - libnghttp2     # [unix]
     - zlib
-
 
 outputs:
   - name: libcurl
@@ -37,15 +36,17 @@ outputs:
         - {{ compiler('c') }}
         - {{ stdlib('c') }}
       host:
-        - openssl   # [unix]
-        - libnghttp2   # [unix]
-        - zlib
-        - zstd  # [unix]
-        - libssh2
+        - libnghttp2  # [unix]
+        - openssl     # [unix]
+        - zstd        # [unix]
+        - brotli
         - krb5
-      run:
         - libssh2
-        - libnghttp2   # [unix]
+        - zlib
+      run:
+        - libnghttp2  # [unix]
+        - libbrotlidec
+        - libssh2
     build:
       run_exports:
         - {{ pin_subpackage('libcurl') }}
@@ -61,15 +62,15 @@ outputs:
       - Library/lib/libcurl.exp  # [win]
     test:
       commands:
-        - curl-config --features       # [not win]
-        - curl-config --protocols      # [not win]
-        - test -f ${PREFIX}/lib/libcurl${SHLIB_EXT}  # [not win]
-        - test ! -f ${PREFIX}/lib/libcurl.a          # [not win]
+        - curl-config --features       # [unix]
+        - curl-config --protocols      # [unix]
+        - test -f ${PREFIX}/lib/libcurl${SHLIB_EXT}  # [unix]
+        - test ! -f ${PREFIX}/lib/libcurl.a          # [unix]
         - if exist %LIBRARY_BIN%\curl.exe exit 1     # [win]
         - if exist %LIBRARY_LIB%\libcurl_a.lib exit 1     # [win]
         - if not exist %LIBRARY_BIN%\libcurl.dll exit 1   # [win]
-        - CURL_SSL_BACKENDS=$(curl-config --ssl-backends)                            # [unix]
-        - if ! echo $CURL_SSL_BACKENDS | grep -q "OpenSSL"; then exit 1; fi          # [unix]
+        - CURL_SSL_BACKENDS=$(curl-config --ssl-backends)                             # [unix]
+        - if ! echo $CURL_SSL_BACKENDS | grep -q "OpenSSL"; then exit 1; fi           # [unix]
         - if ! echo $CURL_SSL_BACKENDS | grep -q "Secure Transport"; then exit 1; fi  # [osx]
 
 
@@ -79,26 +80,28 @@ outputs:
         - {{ compiler('c') }}
         - {{ stdlib('c') }}
       host:
-        - openssl   # [unix]
-        - zlib
-        - zstd  # [unix]
-        - libssh2
-        - krb5
         - {{ pin_subpackage('libcurl', exact=True) }}
+        - openssl  # [unix]
+        - zstd     # [unix]
+        - brotli
+        - krb5
+        - libssh2
+        - zlib
       run:
         - {{ pin_subpackage('libcurl', exact=True) }}
+        - libbrotlidec
     files:
-      - lib/libcurl.a*  # [unix]
+      - lib/libcurl.a*             # [unix]
       - Library/lib/libcurl_a.lib  # [win]
     test:
       commands:
-        - test -f $PREFIX/lib/libcurl.a  # [not win]
+        - test -f $PREFIX/lib/libcurl.a                    # [unix]
         - if not exist %LIBRARY_LIB%\libcurl_a.lib exit 1  # [win]
 
   - name: curl
     files:
       - bin/curl               # [unix]
-      - Library/bin/curl.exe*   # [win]
+      - Library/bin/curl.exe*  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -107,16 +110,18 @@ outputs:
         - {{ pin_subpackage('libcurl', exact=True) }}
         # OpenSSL is needed here to prevent conda-build from getting confused while
         # both OpenSSL 1.1.1 and 3.0.0 and being supported
-        - openssl   # [unix]
-        - zlib
-        - zstd  # [unix]
-        - libssh2
+        - openssl  # [unix]
+        - zstd     # [unix]
         - krb5
+        - libssh2
+        - zlib
       run:
         - {{ pin_subpackage('libcurl', exact=True) }}
+        - libbrotlidec
         - libssh2
     test:
       commands:
+        - curl --version
         # curl help commands on Windows have non-zero status codes.  Need other test.
         - curl --help
         # Try downloading something from https to make sure the certs are used correctly.
