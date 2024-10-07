@@ -28,7 +28,9 @@ requirements:
     - openssl        # [unix]
     - libnghttp2     # [unix]
     - zlib
-
+    - libbrotlicommon
+    - libbrotlienc
+    - libbrotlidec
 
 outputs:
   - name: libcurl
@@ -43,6 +45,9 @@ outputs:
         - zstd  # [unix]
         - libssh2
         - krb5
+        - libbrotlicommon
+        - libbrotlienc
+        - libbrotlidec
       run:
         - libssh2
         - libnghttp2   # [unix]

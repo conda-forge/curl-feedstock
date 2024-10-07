@@ -18,6 +18,7 @@ fi
     --enable-websockets \
     --with-ca-bundle=${PREFIX}/ssl/cacert.pem \
     $USESSL \
+    --with-brotli=${PREFIX} \
     --with-zlib=${PREFIX} \
     --with-zstd=${PREFIX} \
     --with-gssapi=${PREFIX} \
