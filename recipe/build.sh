@@ -19,11 +19,11 @@ fi
     --with-ca-bundle=${PREFIX}/ssl/cacert.pem \
     $USESSL \
     --with-brotli=${PREFIX} \
-    --with-zlib=${PREFIX} \
-    --with-zstd=${PREFIX} \
     --with-gssapi=${PREFIX} \
     --with-libssh2=${PREFIX} \
     --with-nghttp2=${PREFIX} \
+    --with-zlib=${PREFIX} \
+    --with-zstd=${PREFIX} \
     --without-libpsl \
 || cat config.log
 
