@@ -17,6 +17,7 @@ nmake /f Makefile.vc ^
     ENABLE_IDN=no ^
     ENABLE_SSPI=yes ^
     MACHINE=%ARCH_STRING% ^
+    CURL_BROTLI=on ^
     ENABLE_UNICODE=yes
 if errorlevel 1 exit 1
 
@@ -31,6 +32,7 @@ nmake /f Makefile.vc ^
     ENABLE_IDN=no ^
     ENABLE_SSPI=yes ^
     MACHINE=%ARCH_STRING% ^
+    CURL_BROTLI=on ^
     ENABLE_UNICODE=yes
 if errorlevel 1 exit 1
 
