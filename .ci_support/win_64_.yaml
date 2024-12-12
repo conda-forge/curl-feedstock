@@ -8,6 +8,8 @@ channel_targets:
 - conda-forge main
 krb5:
 - '1.21'
+libcurl:
+- '8'
 libssh2:
 - '1'
 target_platform:
