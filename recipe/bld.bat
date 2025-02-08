@@ -7,23 +7,36 @@ if %ARCH% == 32 (
 )
 
 REM This is implicitly using WinSSL.  See Makefile.vc for more info.
-nmake /f Makefile.vc MODE=dll VC=%VS_MAJOR:"=% WITH_DEVEL=%LIBRARY_PREFIX% ^
-         WITH_ZLIB=dll WITH_SSH2=dll DEBUG=no ENABLE_IDN=no ENABLE_SSPI=yes ^
-         MACHINE=%ARCH_STRING% ENABLE_UNICODE=yes
+cmake -G "Ninja" ^
+    %CMAKE_ARGS% ^
+    -A x64 ^
+    -D CMAKE_BUILD_TYPE:STRING="Release" ^
+    -D CMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
+    -D CMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON ^
+    -D BUILD_SHARED_LIBS:BOOL=ON ^
+    -D CURL_ZLIB:BOOL=ON ^
+    -D CURL_USE_LIBSSH2:BOOL=ON ^
+    -D USE_WIN32_IDN:BOOL=OFF ^
+    -D CURL_WINDOWS_SSPI:BOOL=ON ^
+    "%SRC_DIR%"
+if errorlevel 1 exit 1
+cmake --build . --target install --config Release -- -v
 if errorlevel 1 exit 1
 
 REM This is implicitly using WinSSL.  See Makefile.vc for more info.
-nmake /f Makefile.vc mode=static VC=%VS_MAJOR:"=% WITH_DEVEL=%LIBRARY_PREFIX% ^
-         WITH_ZLIB=dll WITH_SSH2=dll DEBUG=no ENABLE_IDN=no ENABLE_SSPI=yes ^
-         MACHINE=%ARCH_STRING% ENABLE_UNICODE=yes
+cmake -G "Ninja" ^
+    %CMAKE_ARGS% ^
+    -A x64 ^
+    -D CMAKE_BUILD_TYPE:STRING="Release" ^
+    -D CMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
+    -D CMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON ^
+    -D BUILD_SHARED_LIBS:BOOL=OFF ^
+    -D CURL_ZLIB:BOOL=ON ^
+    -D CURL_USE_LIBSSH2:BOOL=ON ^
+    -D USE_WIN32_IDN:BOOL=OFF ^
+    -D CURL_WINDOWS_SSPI:BOOL=ON ^
+    "%SRC_DIR%"
 if errorlevel 1 exit 1
-
-REM install static library
-copy ..\builds\libcurl-vc%VS_MAJOR:"=%-%ARCH_STRING%-release-static-zlib-dll-ssh2-dll-ipv6-sspi-schannel\lib\libcurl_a.lib %LIBRARY_PREFIX%\lib\libcurl_a.lib
-if %ERRORLEVEL% GTR 3 exit 1
-
-REM install everything else
-robocopy ..\builds\libcurl-vc%VS_MAJOR:"=%-%ARCH_STRING%-release-dll-zlib-dll-ssh2-dll-ipv6-sspi-schannel\ %LIBRARY_PREFIX% *.* /E
-if %ERRORLEVEL% GTR 3 exit 1
+cmake --build . --target install --config Release -- -v
 
 exit 0
