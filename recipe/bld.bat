@@ -21,6 +21,7 @@ cmake -G "Ninja" ^
     -D USE_WIN32_IDN:BOOL=OFF ^
     -D CURL_USE_SCHANNEL:BOOL=ON ^
     -D CURL_WINDOWS_SSPI:BOOL=ON ^
+    -D ENABLE_UNICODE:BOOL=ON ^
     "%SRC_DIR%"
 if errorlevel 1 exit 1
 cmake --build . --target install --config "%CMAKE_CONFIG%" -- -v
@@ -41,6 +42,7 @@ cmake -G "Ninja" ^
     -D USE_WIN32_IDN:BOOL=OFF ^
     -D CURL_USE_SCHANNEL:BOOL=ON ^
     -D CURL_WINDOWS_SSPI:BOOL=ON ^
+    -D ENABLE_UNICODE:BOOL=ON ^
     "%SRC_DIR%"
 if errorlevel 1 exit 1
 cmake --build . --target install --config "%CMAKE_CONFIG%" -- -v
