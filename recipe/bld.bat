@@ -46,5 +46,9 @@ if errorlevel 1 exit 1
 cmake --build . --target install --config "%CMAKE_CONFIG%" -- -v
 if errorlevel 1 exit 1
 
+:: Rename static library to match previously expected name
+move %LIBRARY_LIB%\libcurl.lib %LIBRARY_LIB%\libcurl_a.lib
+if errorlevel 1 exit 1
+
 popd
 if errorlevel 1 exit 1
