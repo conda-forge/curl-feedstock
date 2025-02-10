@@ -59,7 +59,6 @@ outputs:
       - Library/bin/libcurl.dll  # [win]
       - Library/include/curl     # [win]
       - Library/lib/libcurl.lib  # [win]
-      - Library/lib/libcurl.exp  # [win]
     test:
       commands:
         - curl-config --features       # [not win]
