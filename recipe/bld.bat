@@ -9,7 +9,6 @@ if %ARCH% == 32 (
 REM This is implicitly using WinSSL.  See Makefile.vc for more info.
 cmake -G "Ninja" ^
     %CMAKE_ARGS% ^
-    -A x64 ^
     -D CMAKE_BUILD_TYPE:STRING="Release" ^
     -D CMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
     -D CMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON ^
@@ -26,7 +25,6 @@ if errorlevel 1 exit 1
 REM This is implicitly using WinSSL.  See Makefile.vc for more info.
 cmake -G "Ninja" ^
     %CMAKE_ARGS% ^
-    -A x64 ^
     -D CMAKE_BUILD_TYPE:STRING="Release" ^
     -D CMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
     -D CMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON ^
