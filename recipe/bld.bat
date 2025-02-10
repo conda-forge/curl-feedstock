@@ -1,15 +1,15 @@
-cd winbuild
+set CMAKE_CONFIG=Release
 
-if %ARCH% == 32 (
-    set ARCH_STRING=x86
-) else (
-    set ARCH_STRING=x64
-)
+:: Create CMake build directory
+mkdir build_%CMAKE_CONFIG%
+if errorlevel 1 exit 1
+pushd build_%CMAKE_CONFIG%
+if errorlevel 1 exit 1
 
-REM This is implicitly using WinSSL.  See Makefile.vc for more info.
+:: This is implicitly using WinSSL.  See Makefile.vc for more info.
 cmake -G "Ninja" ^
     %CMAKE_ARGS% ^
-    -D CMAKE_BUILD_TYPE:STRING="Release" ^
+    -D CMAKE_BUILD_TYPE:STRING="%CMAKE_CONFIG%" ^
     -D CMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
     -D CMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON ^
     -D BUILD_SHARED_LIBS:BOOL=ON ^
@@ -22,10 +22,10 @@ if errorlevel 1 exit 1
 cmake --build . --target install --config Release -- -v
 if errorlevel 1 exit 1
 
-REM This is implicitly using WinSSL.  See Makefile.vc for more info.
+:: This is implicitly using WinSSL.  See Makefile.vc for more info.
 cmake -G "Ninja" ^
     %CMAKE_ARGS% ^
-    -D CMAKE_BUILD_TYPE:STRING="Release" ^
+    -D CMAKE_BUILD_TYPE:STRING="%CMAKE_CONFIG%" ^
     -D CMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
     -D CMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON ^
     -D BUILD_SHARED_LIBS:BOOL=OFF ^
@@ -36,5 +36,7 @@ cmake -G "Ninja" ^
     "%SRC_DIR%"
 if errorlevel 1 exit 1
 cmake --build . --target install --config Release -- -v
+if errorlevel 1 exit 1
 
-exit 0
+popd
+if errorlevel 1 exit 1
