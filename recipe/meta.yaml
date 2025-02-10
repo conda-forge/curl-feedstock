@@ -17,6 +17,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
     - make             # [unix]
+    - cmake-no-system  # [win]
     # perl is required to run the tests on UNIX.
     - perl  # [unix]
     - pkg-config  # [unix]
