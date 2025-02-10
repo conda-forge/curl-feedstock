@@ -1,12 +1,12 @@
 set CMAKE_CONFIG=Release
 
-:: Create CMake build directory
+:: Create and switch to CMake build directory
 mkdir build_%CMAKE_CONFIG%
 if errorlevel 1 exit 1
 pushd build_%CMAKE_CONFIG%
 if errorlevel 1 exit 1
 
-:: This is implicitly using WinSSL.  See Makefile.vc for more info.
+:: Build and install executable and dynamic libraries
 cmake -G "Ninja" ^
     %CMAKE_ARGS% ^
     -D CMAKE_BUILD_TYPE:STRING="%CMAKE_CONFIG%" ^
@@ -25,7 +25,7 @@ if errorlevel 1 exit 1
 cmake --build . --target install --config Release -- -v
 if errorlevel 1 exit 1
 
-:: This is implicitly using WinSSL.  See Makefile.vc for more info.
+:: Build and install static libraries
 cmake -G "Ninja" ^
     %CMAKE_ARGS% ^
     -D CMAKE_BUILD_TYPE:STRING="%CMAKE_CONFIG%" ^
