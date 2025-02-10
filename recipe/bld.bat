@@ -19,6 +19,7 @@ cmake -G "Ninja" ^
     -D CURL_USE_LIBPSL:BOOL=OFF ^
     -D CURL_USE_LIBSSH2:BOOL=ON ^
     -D USE_WIN32_IDN:BOOL=OFF ^
+    -D CURL_USE_SCHANNEL:BOOL=ON ^
     -D CURL_WINDOWS_SSPI:BOOL=ON ^
     "%SRC_DIR%"
 if errorlevel 1 exit 1
@@ -38,6 +39,7 @@ cmake -G "Ninja" ^
     -D CURL_USE_LIBPSL:BOOL=OFF ^
     -D CURL_USE_LIBSSH2:BOOL=ON ^
     -D USE_WIN32_IDN:BOOL=OFF ^
+    -D CURL_USE_SCHANNEL:BOOL=ON ^
     -D CURL_WINDOWS_SSPI:BOOL=ON ^
     "%SRC_DIR%"
 if errorlevel 1 exit 1
