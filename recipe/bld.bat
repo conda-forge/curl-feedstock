@@ -23,7 +23,7 @@ cmake -G "Ninja" ^
     -D CURL_WINDOWS_SSPI:BOOL=ON ^
     "%SRC_DIR%"
 if errorlevel 1 exit 1
-cmake --build . --target install --config Release -- -v
+cmake --build . --target install --config "%CMAKE_CONFIG%" -- -v
 if errorlevel 1 exit 1
 
 :: Build and install static libraries
@@ -43,7 +43,7 @@ cmake -G "Ninja" ^
     -D CURL_WINDOWS_SSPI:BOOL=ON ^
     "%SRC_DIR%"
 if errorlevel 1 exit 1
-cmake --build . --target install --config Release -- -v
+cmake --build . --target install --config "%CMAKE_CONFIG%" -- -v
 if errorlevel 1 exit 1
 
 popd
