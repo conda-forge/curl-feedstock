@@ -21,6 +21,7 @@ fi
     --with-zlib=${PREFIX} \
     --with-zstd=${PREFIX} \
     --with-gssapi=${PREFIX} \
+    --with-spnego \
     --with-libssh2=${PREFIX} \
     --with-nghttp2=${PREFIX} \
     --without-libpsl \
