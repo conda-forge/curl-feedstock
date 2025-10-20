@@ -1,4 +1,4 @@
-{% set version = "8.14.1" %}
+{% set version = "8.16.0" %}
 
 package:
   name: curl_split_recipe
@@ -6,7 +6,7 @@ package:
 
 source:
   url: http://curl.haxx.se/download/curl-{{ version }}.tar.bz2
-  sha256: 5760ed3c1a6aac68793fc502114f35c3e088e8cd5c084c2d044abdf646ee48fb
+  sha256: 9459180ab4933b30d0778ddd71c91fe2911fab731c46e59b3f4c8385b1596c91
 
 build:
   number: 0
@@ -70,7 +70,6 @@ outputs:
         - if not exist %LIBRARY_BIN%\libcurl.dll exit 1   # [win]
         - CURL_SSL_BACKENDS=$(curl-config --ssl-backends)                            # [unix]
         - if ! echo $CURL_SSL_BACKENDS | grep -q "OpenSSL"; then exit 1; fi          # [unix]
-        - if ! echo $CURL_SSL_BACKENDS | grep -q "Secure Transport"; then exit 1; fi  # [osx]
 
 
   - name: libcurl-static
