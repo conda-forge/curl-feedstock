@@ -6,7 +6,7 @@ cp $BUILD_PREFIX/share/libtool/build-aux/config.* .
 export CFLAGS="$CFLAGS $CPPFLAGS"
 
 if [[ "$target_platform" == "osx-"* ]]; then
-    USESSL="--with-openssl=${PREFIX} --with-secure-transport --with-default-ssl-backend=openssl"
+    USESSL="--with-openssl=${PREFIX} --with-default-ssl-backend=openssl"
 else
     USESSL="--with-openssl=${PREFIX}"
 fi
