@@ -19,7 +19,7 @@ libcurl:
 libssh2:
 - '1'
 openssl:
-- '3'
+- '3.5'
 perl:
 - 5.32.1
 target_platform:
