@@ -24,7 +24,6 @@ requirements:
   host:
     - zlib
     - zstd  # [unix]
-    - krb5
     - libssh2
     - openssl        # [unix]
     - libnghttp2     # [unix]
@@ -43,7 +42,6 @@ outputs:
         - zlib
         - zstd  # [unix]
         - libssh2
-        - krb5
       run:
         - libssh2
         - libnghttp2   # [unix]
@@ -82,7 +80,6 @@ outputs:
         - zlib
         - zstd  # [unix]
         - libssh2
-        - krb5
         - {{ pin_subpackage('libcurl', exact=True) }}
       run:
         - {{ pin_subpackage('libcurl', exact=True) }}
@@ -110,7 +107,6 @@ outputs:
         - zlib
         - zstd  # [unix]
         - libssh2
-        - krb5
       run:
         - {{ pin_subpackage('libcurl', exact=True) }}
         - libssh2
