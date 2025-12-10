@@ -9,7 +9,7 @@ source:
   sha256: 230032528ce5f85594d4f3eace63364c4244ccc3c801b7f8db1982722f2761f4
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -58,16 +58,19 @@ outputs:
       - bin/curl-config          # [unix]
       - Library/bin/libcurl.dll  # [win]
       - Library/include/curl     # [win]
-      - Library/lib/libcurl.lib  # [win]
+      - Library/lib/libcurl.lib           # [win]
+      - Library/lib/pkgconfig/libcurl.pc  # [win]
     test:
       commands:
         - curl-config --features       # [not win]
         - curl-config --protocols      # [not win]
-        - test -f ${PREFIX}/lib/libcurl${SHLIB_EXT}  # [not win]
-        - test ! -f ${PREFIX}/lib/libcurl.a          # [not win]
-        - if exist %LIBRARY_BIN%\curl.exe exit 1     # [win]
-        - if exist %LIBRARY_LIB%\libcurl_a.lib exit 1     # [win]
-        - if not exist %LIBRARY_BIN%\libcurl.dll exit 1   # [win]
+        - test -f ${PREFIX}/lib/pkgconfig/libcurl.pc  # [not win]
+        - test -f ${PREFIX}/lib/libcurl${SHLIB_EXT}   # [not win]
+        - test ! -f ${PREFIX}/lib/libcurl.a           # [not win]
+        - if exist %LIBRARY_BIN%\curl.exe exit 1                  # [win]
+        - if exist %LIBRARY_LIB%\libcurl_a.lib exit 1             # [win]
+        - if not exist %LIBRARY_BIN%\libcurl.dll exit 1           # [win]
+        - if not exist %LIBRARY_LIB%\pkgconfig\libcurl.pc exit 1  # [win]
         - CURL_SSL_BACKENDS=$(curl-config --ssl-backends)                            # [unix]
         - if ! echo $CURL_SSL_BACKENDS | grep -q "OpenSSL"; then exit 1; fi          # [unix]
 
