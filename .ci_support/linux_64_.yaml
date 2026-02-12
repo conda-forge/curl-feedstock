@@ -13,7 +13,7 @@ channel_targets:
 docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
 krb5:
-- '1.21'
+- '1.22'
 libcurl:
 - '8'
 libssh2:

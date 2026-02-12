@@ -15,7 +15,7 @@ channel_sources:
 channel_targets:
 - conda-forge main
 krb5:
-- '1.21'
+- '1.22'
 libcurl:
 - '8'
 libssh2:
