@@ -1,0 +1,18 @@
+c_compiler:
+- vs2022
+c_stdlib:
+- vs
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge main
+krb5:
+- '1.21'
+libcurl:
+- '8'
+libssh2:
+- '1'
+target_platform:
+- win-arm64
+zlib:
+- '1'
