@@ -22,13 +22,12 @@ requirements:
     - perl  # [unix]
     - pkg-config  # [unix]
   host:
-    - zlib
-    - zstd  # [unix]
     - krb5
     - libssh2
     - openssl        # [unix]
     - libnghttp2     # [unix]
     - zlib
+    - zstd           # [unix]
 
 
 outputs:
