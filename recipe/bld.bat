@@ -1,10 +1,10 @@
+@echo on
+
 set CMAKE_CONFIG=Release
 
 :: Create and switch to CMake build directory
 mkdir build_%CMAKE_CONFIG%
-if errorlevel 1 exit 1
 pushd build_%CMAKE_CONFIG%
-if errorlevel 1 exit 1
 
 :: Set reused options for CMake builds
 set CMAKE_ARGS=%CMAKE_ARGS% ^
@@ -48,4 +48,3 @@ move %LIBRARY_LIB%\libcurl_imp.lib %LIBRARY_LIB%\libcurl.lib
 if errorlevel 1 exit 1
 
 popd
-if errorlevel 1 exit 1
