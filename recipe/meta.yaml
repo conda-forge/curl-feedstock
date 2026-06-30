@@ -9,7 +9,7 @@ source:
   sha256: ad6f2f94934b38e31e48272833c99b891d045b4565fe942a53fbd27bd3910e16
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -28,7 +28,7 @@ requirements:
     - libnghttp2     # [unix]
     - zlib
     - zstd           # [unix]
-
+    - libpsl  # [not (win and arm64)]
 
 outputs:
   - name: libcurl
@@ -43,6 +43,7 @@ outputs:
         - zstd  # [unix]
         - libssh2
         - krb5
+        - libpsl  # [not (win and arm64)]
       run:
         - libssh2
         - libnghttp2   # [unix]
@@ -85,6 +86,7 @@ outputs:
         - zstd  # [unix]
         - libssh2
         - krb5
+        - libpsl  # [not (win and arm64)]
         - {{ pin_subpackage('libcurl', exact=True) }}
       run:
         - {{ pin_subpackage('libcurl', exact=True) }}
@@ -113,6 +115,7 @@ outputs:
         - zstd  # [unix]
         - libssh2
         - krb5
+        - libpsl  # [not (win and arm64)]
       run:
         - {{ pin_subpackage('libcurl', exact=True) }}
         - libssh2
