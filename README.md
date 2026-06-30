@@ -49,6 +49,13 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>osx_arm64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=203&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/curl-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>win_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=203&branchName=main">
@@ -186,6 +193,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@h-vetinari](https://github.com/h-vetinari/)
 * [@jakirkham](https://github.com/jakirkham/)
 * [@mingwandroid](https://github.com/mingwandroid/)
 * [@msarahan](https://github.com/msarahan/)

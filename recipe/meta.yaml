@@ -9,7 +9,7 @@ source:
   sha256: ad6f2f94934b38e31e48272833c99b891d045b4565fe942a53fbd27bd3910e16
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -22,13 +22,12 @@ requirements:
     - perl  # [unix]
     - pkg-config  # [unix]
   host:
-    - zlib
-    - zstd  # [unix]
     - krb5
     - libssh2
     - openssl        # [unix]
     - libnghttp2     # [unix]
     - zlib
+    - zstd           # [unix]
 
 
 outputs:
@@ -146,3 +145,4 @@ extra:
     - ocefpaf
     - mingwandroid
     - xylar
+    - h-vetinari
