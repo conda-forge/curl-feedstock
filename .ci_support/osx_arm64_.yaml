@@ -18,6 +18,8 @@ krb5:
 - '1.22'
 libcurl:
 - '8'
+libpsl:
+- '0.22'
 libssh2:
 - '1'
 macos_machine:
