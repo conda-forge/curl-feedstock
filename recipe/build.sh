@@ -23,7 +23,7 @@ fi
     --with-gssapi=${PREFIX} \
     --with-libssh2=${PREFIX} \
     --with-nghttp2=${PREFIX} \
-    --without-libpsl \
+    --with-libpsl \
 || cat config.log
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
