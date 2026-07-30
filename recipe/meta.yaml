@@ -9,7 +9,7 @@ source:
   sha256: ad6f2f94934b38e31e48272833c99b891d045b4565fe942a53fbd27bd3910e16
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -29,6 +29,8 @@ requirements:
     - zlib
     - zstd           # [unix]
     - libpsl  # [not (win and arm64)]
+    # Needed so the Windows static libcurl build can link libpsl.a with PSL_STATIC.
+    - libpsl-static  # [not (win and arm64)]
 
 outputs:
   - name: libcurl
@@ -86,7 +88,7 @@ outputs:
         - zstd  # [unix]
         - libssh2
         - krb5
-        - libpsl  # [not (win and arm64)]
+        - libpsl-static  # [not (win and arm64)]
         - {{ pin_subpackage('libcurl', exact=True) }}
       run:
         - {{ pin_subpackage('libcurl', exact=True) }}
