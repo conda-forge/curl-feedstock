@@ -35,9 +35,22 @@ if errorlevel 1 exit 1
 cmake --build . --target install --config "%CMAKE_CONFIG%" -- -v
 if errorlevel 1 exit 1
 
-:: Build and install static libraries
+:: Build and install static libraries in a separate build tree so the shared
+:: configure cache does not keep the DLL import library for libpsl.
+:: Compile with PSL_STATIC so objects reference psl_* instead of __imp_psl_*.
+:: See: https://github.com/mamba-org/mamba/pull/4355
+popd
+mkdir build_static_%CMAKE_CONFIG%
+pushd build_static_%CMAKE_CONFIG%
+
+set "CMAKE_STATIC_LIBPSL_ARGS="
+if not "%target_platform%"=="win-arm64" (
+    set "CFLAGS=%CFLAGS% -DPSL_STATIC"
+    set "CMAKE_STATIC_LIBPSL_ARGS=-D LIBPSL_LIBRARY:FILEPATH=%LIBRARY_LIB%\libpsl.a"
+)
 cmake -G "Ninja" ^
     %CMAKE_ARGS% ^
+    %CMAKE_STATIC_LIBPSL_ARGS% ^
     -D BUILD_CURL_EXE:BOOL=OFF ^
     -D BUILD_SHARED_LIBS:BOOL=OFF ^
     -D BUILD_STATIC_LIBS:BOOL=ON ^
