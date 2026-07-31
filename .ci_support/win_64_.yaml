@@ -11,7 +11,7 @@ krb5:
 libcurl:
 - '8'
 libpsl:
-- '0.22'
+- '0.23'
 libssh2:
 - '1'
 target_platform:
