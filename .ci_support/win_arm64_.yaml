@@ -1,5 +1,7 @@
 c_compiler:
-- vs2022
+- vs
+c_compiler_version:
+- '2022'
 c_stdlib:
 - vs
 channel_sources:
@@ -10,6 +12,8 @@ krb5:
 - '1.22'
 libcurl:
 - '8'
+libpsl:
+- '0.23'
 libssh2:
 - '1'
 target_platform:
