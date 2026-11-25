@@ -20,7 +20,7 @@ requirements:
     - cmake-no-system  # [win]
     # perl is required to run the tests on UNIX.
     - perl  # [unix]
-    - pkg-config  # [unix]
+    - pkgconf  # [unix]
   host:
     - krb5
     - libssh2
