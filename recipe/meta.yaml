@@ -9,7 +9,7 @@ source:
   sha256: 95b22eb32bf6d1fa6e3e9463bdb61cece3efc56d86576a9b3cbd428246a6d854
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -20,7 +20,7 @@ requirements:
     - cmake-no-system  # [win]
     # perl is required to run the tests on UNIX.
     - perl  # [unix]
-    - pkg-config  # [unix]
+    - pkgconf  # [unix]
   host:
     - krb5
     - libssh2
@@ -28,9 +28,9 @@ requirements:
     - libnghttp2     # [unix]
     - zlib
     - zstd           # [unix]
-    - libpsl  # [not (win and arm64)]
+    - libpsl
     # Needed so the Windows static libcurl build can link libpsl.a with PSL_STATIC.
-    - libpsl-static  # [not (win and arm64)]
+    - libpsl-static
 
 outputs:
   - name: libcurl
@@ -45,7 +45,7 @@ outputs:
         - zstd  # [unix]
         - libssh2
         - krb5
-        - libpsl  # [not (win and arm64)]
+        - libpsl
       run:
         - libssh2
         - libnghttp2   # [unix]
@@ -76,7 +76,6 @@ outputs:
         - CURL_SSL_BACKENDS=$(curl-config --ssl-backends)                            # [unix]
         - if ! echo $CURL_SSL_BACKENDS | grep -q "OpenSSL"; then exit 1; fi          # [unix]
 
-
   - name: libcurl-static
     requirements:
       build:
@@ -88,7 +87,7 @@ outputs:
         - zstd  # [unix]
         - libssh2
         - krb5
-        - libpsl-static  # [not (win and arm64)]
+        - libpsl-static
         - {{ pin_subpackage('libcurl', exact=True) }}
       run:
         - {{ pin_subpackage('libcurl', exact=True) }}
@@ -117,7 +116,7 @@ outputs:
         - zstd  # [unix]
         - libssh2
         - krb5
-        - libpsl  # [not (win and arm64)]
+        - libpsl
       run:
         - {{ pin_subpackage('libcurl', exact=True) }}
         - libssh2
